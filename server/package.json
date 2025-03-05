@@ -1,0 +1,17 @@
+{
+  "name": "vunk-server-demo",
+  "version": "1.0.0",
+  "description": "Component-based server development inspired by Vue",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "tsx ./src/main.ts"
+  },
+  "dependencies": {
+    "@koa/router": "^13.1.0",
+    "consola": "^3.4.0",
+    "koa": "^2.16.0"
+  },
+  "devDependencies": {
+    "@types/koa__router": "^12.0.4"
+  }
+}

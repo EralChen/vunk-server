@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "jsx": "preserve",
+    "lib": ["esnext"],
+    "useDefineForClassFields": false,
+    "experimentalDecorators": true,
+    "baseUrl": ".",
+    "rootDir": "../",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    },
+    "resolveJsonModule": true,
+    "types": [
+      "node"
+    ],
+    "allowJs": true,
+    "strict": true,
+    "sourceMap": true,
+    "esModuleInterop": true
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

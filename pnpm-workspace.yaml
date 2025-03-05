@@ -5,3 +5,4 @@ packages:
   - app
   - app-ssr
   - slidev
+  - server

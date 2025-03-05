@@ -1,5 +1,5 @@
-import { PropType } from 'vue'
-import { Row } from './types'
+import type { PropType } from 'vue'
+import type { Row } from './types'
 
 export const props = {
   modelValue: {
