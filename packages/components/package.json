@@ -1,10 +1,10 @@
 {
-  "name": "@skzz-template/components",
-  "scripts": {
-    "build": "gulp -f gulpfile.ts"
-  },
-  "keywords": [],
+  "name": "@vunk-server/components",
+  "description": "",
   "author": "",
   "license": "ISC",
-  "description": ""
+  "keywords": [],
+  "scripts": {
+    "build": "gulp -f gulpfile.ts"
+  }
 }

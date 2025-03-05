@@ -1,9 +1,0 @@
-{
-  "name": "@skzz-template/stores",
-  "private": true,
-  "module": "index.ts",
-  "type": "module",
-  "scripts": {
-    "build": "gulp -f gulpfile.ts"
-  }
-}

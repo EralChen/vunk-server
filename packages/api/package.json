@@ -1,8 +1,8 @@
 {
-  "name": "@skzz-template/api",
+  "name": "@vunk-server/api",
+  "type": "module",
   "private": true,
   "module": "index.ts",
-  "type": "module",
   "scripts": {
     "build": "gulp -f gulpfile.ts"
   }

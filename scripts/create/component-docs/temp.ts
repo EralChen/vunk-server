@@ -1,6 +1,8 @@
-import { capitalize } from 'vue'
 import { LIB_PRE } from '@lib-env/build-constants'
-export const createMd = (t: string, l: string) => `--- 
+import { capitalize } from 'vue'
+
+export function createMd (t: string, l: string) {
+  return `--- 
 title: ${t}
 lang: zh-CN
 ---
@@ -18,13 +20,16 @@ ${l}/basic
 
 ## ${t} 其他
 `
+}
 
-export const createVue = (mriData: {
+export function createVue (mriData: {
   t: string
   l: string
-}) => `<script lang="ts" setup>
-import { ${capitalize(LIB_PRE)}${mriData.t} } from '@skzz-template/components/${mriData.l}'
+}) {
+  return `<script lang="ts" setup>
+import { ${capitalize(LIB_PRE)}${mriData.t} } from '@vunk-server/components/${mriData.l}'
 </script>
 <template>
   <div></div>
 </template>`
+}

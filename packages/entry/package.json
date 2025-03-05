@@ -1,12 +1,12 @@
 {
-  "name": "@skzz/template",
+  "name": "@vunk/server",
   "version": "0.0.0-alpha.1",
   "description": "",
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
   "main": "index.ts",
   "scripts": {
     "build": "gulp -f gulpfile.ts"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  }
 }

@@ -14,27 +14,9 @@ importers:
       '@element-plus/icons-vue':
         specifier: ^2.3.1
         version: 2.3.1(vue@3.5.13(typescript@5.6.3))
-      '@skzz-template/api':
-        specifier: workspace:*
-        version: link:packages/api
-      '@skzz-template/components':
-        specifier: workspace:*
-        version: link:packages/components
-      '@skzz-template/composables':
-        specifier: workspace:*
-        version: link:packages/composables
-      '@skzz-template/shared':
-        specifier: workspace:*
-        version: link:packages/shared
-      '@skzz-template/stores':
-        specifier: workspace:*
-        version: link:packages/stores
       '@skzz/platform':
         specifier: 0.0.0-alpha.73
         version: 0.0.0-alpha.73
-      '@skzz/template':
-        specifier: workspace:*
-        version: link:packages/entry
       '@vuesri/core':
         specifier: ^1.0.59
         version: 1.0.59(@arcgis/core@4.31.5(@floating-ui/utils@0.2.8))(@vunk/core@1.2.3)(vue@3.5.13(typescript@5.6.3))
@@ -44,6 +26,15 @@ importers:
       '@vueuse/core':
         specifier: ^11.3.0
         version: 11.3.0(vue@3.5.13(typescript@5.6.3))
+      '@vunk-server/api':
+        specifier: workspace:*
+        version: link:packages/api
+      '@vunk-server/components':
+        specifier: workspace:*
+        version: link:packages/components
+      '@vunk-server/shared':
+        specifier: workspace:*
+        version: link:packages/shared
       '@vunk/core':
         specifier: 1.2.3
         version: 1.2.3
@@ -53,6 +44,9 @@ importers:
       '@vunk/plus':
         specifier: ^0.2.0
         version: 0.2.0
+      '@vunk/server':
+        specifier: workspace:*
+        version: link:packages/entry
       '@vunk/shared':
         specifier: ^0.5.37
         version: 0.5.37
@@ -334,8 +328,6 @@ importers:
       '@types/qs':
         specifier: ^6.9.7
         version: 6.9.17
-
-  packages/stores: {}
 
   slidev:
     dependencies:
