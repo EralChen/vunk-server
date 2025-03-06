@@ -1,5 +1,7 @@
-import type { Middleware } from 'koa'
-import { type Component, createApp, type DefineComponent } from '@vunk-server/runtime-body'
+import type { Component } from '@vunk-server/runtime-body'
+import type { Middleware, ParameterizedContext } from 'koa'
+import { createApp, h, inject, InjectionKey } from '@vunk-server/runtime-body'
+import { KoaKey } from '../'
 
 export function middleware<
   T extends Component,
@@ -7,9 +9,15 @@ export function middleware<
   options: T,
 ): Middleware {
   return async (ctx, next) => {
-    const app = createApp({
+    createApp({
       setup (_, { slots }) {
-        return slots.default?.()
+        inject(KoaKey, { context: ctx })
+
+        return () => h(
+          options,
+          null,
+          slots,
+        )
       },
     }).mount(ctx)
   }
