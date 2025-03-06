@@ -30,6 +30,8 @@
     "@vunk-server/api": "workspace:*",
     "@vunk-server/components": "workspace:*",
     "@vunk-server/core": "workspace:*",
+    "@vunk-server/koa": "workspace:*",
+    "@vunk-server/runtime-body": "workspace:*",
     "@vunk-server/shared": "workspace:*",
     "@vunk/core": "1.2.3",
     "@vunk/form": "^1.4.4",
@@ -77,6 +79,6 @@
     "vite": "^5.4.11",
     "vite-plugin-external": "^4.3.1",
     "vite-plugin-vue-devtools": "^7.6.4",
-    "vitest": "^2.1.5"
+    "vitest": "^3.0.7"
   }
 }

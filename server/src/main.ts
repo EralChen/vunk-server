@@ -22,12 +22,17 @@ app.use(async (ctx, next) => {
 
 // Error handler middleware
 app.use(async (ctx, next) => {
+  ctx.body = {
+    message: 'Hello World',
+  }
+
   try {
     await next()
   }
   catch (err: any) {
     consola.error(err)
     ctx.status = err.status || 500
+
     ctx.body = {
       error: {
         message: err.message || 'Internal Server Error',

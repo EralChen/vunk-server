@@ -8,7 +8,7 @@ export default defineComponent({
     },
 
   },
-  async setup (props, ctx) {
+  setup (props, ctx) {
     console.log('Hello World!')
     return () => ({
       id: props.id,
