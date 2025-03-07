@@ -1,10 +1,16 @@
-import consola from 'consola'
+import type { JSONElementNode } from '../nodeOps'
 
 export function patchProp (
-  el: unknown,
+  el: JSONElementNode,
   key: string,
   prevValue: any,
   nextValue: any,
-) {
-  consola.log('patchProp', el, key, prevValue, nextValue)
+): void {
+  // 更新 props
+  el.props[key] = nextValue
+
+  // 更新 value
+  if (key === 'value') {
+    el.value = nextValue
+  }
 }

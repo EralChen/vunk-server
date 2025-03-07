@@ -1,8 +1,8 @@
+import type { JSONElementNode } from '../nodeOps'
 import {
   type CreateAppFunction,
   createRenderer,
   type RootRenderFunction,
-  type VNode,
 } from '@vue/runtime-core'
 import { extend } from '@vue/shared'
 import { nodeOps } from '../nodeOps'
@@ -12,6 +12,8 @@ export const renderer = createRenderer(
   extend({ patchProp }, nodeOps),
 )
 
-export const render = renderer.render
+export const render = renderer.render as RootRenderFunction<JSONElementNode>
 
-export const createApp = renderer.createApp
+export const createApp = renderer.createApp as CreateAppFunction<JSONElementNode>
+
+export * from '@vue/runtime-core'
