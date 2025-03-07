@@ -1,5 +1,5 @@
 {
-  "name": "@vunk-server/runtime-json",
+  "name": "@vunk-server/jsx-runtime",
   "type": "module",
   "private": true,
   "module": "index.ts",

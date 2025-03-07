@@ -1,5 +1,5 @@
+import { defineComponent, h } from '@vunk-server/jsx-runtime'
 import { middleware } from '@vunk-server/koa'
-import { defineComponent, h } from '@vunk-server/runtime-json'
 import consola from 'consola'
 import Koa from 'koa'
 import { it } from 'vitest'
@@ -33,7 +33,6 @@ it('should work', () => {
   app.use(middleware(Hello))
 
   app.use(async (ctx, next) => {
-    ctx.body = 'Hello World'
     consola.log('ctx.body', ctx.body)
     await next()
   })

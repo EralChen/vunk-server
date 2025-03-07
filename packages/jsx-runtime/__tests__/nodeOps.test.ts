@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest'
-import { createApp, h, nodeOps } from '../'
+import { createApp, h, nodeOps } from '..'
 
 it('should render basic text node', () => {
   const root = nodeOps.createElement('root')

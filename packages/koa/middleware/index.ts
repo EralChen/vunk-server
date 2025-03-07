@@ -1,7 +1,6 @@
-import type { Component } from '@vunk-server/runtime-json'
-import type { Middleware, ParameterizedContext } from 'koa'
-import { randomUUID } from 'node:crypto'
-import { createApp, h, inject, InjectionKey } from '@vunk-server/runtime-json'
+import type { Component } from '@vunk-server/jsx-runtime'
+import type { Middleware } from 'koa'
+import { createApp, createElement, h, inject } from '@vunk-server/jsx-runtime'
 import consola from 'consola'
 import { KoaKey } from '../'
 
@@ -11,14 +10,11 @@ export function middleware<
   Component: T,
 ): Middleware {
   return async (ctx, next) => {
-    const app = {
-      id: randomUUID(),
-    }
+    const root = createElement('')
 
     createApp({
       setup (_, { slots }) {
         inject(KoaKey, { context: ctx })
-
         return () => h(
           Component,
           {
@@ -27,8 +23,10 @@ export function middleware<
           slots,
         )
       },
-    }).mount(app)
+    }).mount(root)
 
-    consola.log('mounting app', app)
+    ctx.body = root.json
+    consola.log('mounting app', ctx.body)
+    await next()
   }
 }
