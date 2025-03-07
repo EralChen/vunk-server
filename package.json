@@ -31,7 +31,7 @@
     "@vunk-server/components": "workspace:*",
     "@vunk-server/core": "workspace:*",
     "@vunk-server/koa": "workspace:*",
-    "@vunk-server/runtime-body": "workspace:*",
+    "@vunk-server/runtime-json": "workspace:*",
     "@vunk-server/shared": "workspace:*",
     "@vunk/core": "1.2.3",
     "@vunk/form": "^1.4.4",

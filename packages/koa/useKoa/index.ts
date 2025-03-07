@@ -1,4 +1,4 @@
-import { inject } from '@vunk-server/runtime-body'
+import { inject } from '@vunk-server/runtime-json'
 import { KoaKey } from './const'
 
 export function useKoa () {

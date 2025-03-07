@@ -1,24 +1,34 @@
-import type { Component } from '@vunk-server/runtime-body'
+import type { Component } from '@vunk-server/runtime-json'
 import type { Middleware, ParameterizedContext } from 'koa'
-import { createApp, h, inject, InjectionKey } from '@vunk-server/runtime-body'
+import { randomUUID } from 'node:crypto'
+import { createApp, h, inject, InjectionKey } from '@vunk-server/runtime-json'
+import consola from 'consola'
 import { KoaKey } from '../'
 
 export function middleware<
   T extends Component,
 > (
-  options: T,
+  Component: T,
 ): Middleware {
   return async (ctx, next) => {
+    const app = {
+      id: randomUUID(),
+    }
+
     createApp({
       setup (_, { slots }) {
         inject(KoaKey, { context: ctx })
 
         return () => h(
-          options,
-          null,
+          Component,
+          {
+            id: 'testid',
+          },
           slots,
         )
       },
-    }).mount(ctx)
+    }).mount(app)
+
+    consola.log('mounting app', app)
   }
 }

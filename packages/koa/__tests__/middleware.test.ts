@@ -1,5 +1,5 @@
 import { middleware } from '@vunk-server/koa'
-import { defineComponent, h } from '@vunk-server/runtime-body'
+import { defineComponent, h } from '@vunk-server/runtime-json'
 import consola from 'consola'
 import Koa from 'koa'
 import { it } from 'vitest'
@@ -13,7 +13,7 @@ const Hello = defineComponent({
   },
   setup (props, ctx) {
     consola.log('props', props, ctx)
-    return h(
+    return () => h(
       'div',
       null,
       `Hello ${props.id}`,

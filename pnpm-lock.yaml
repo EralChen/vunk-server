@@ -38,9 +38,9 @@ importers:
       '@vunk-server/koa':
         specifier: workspace:*
         version: link:packages/koa
-      '@vunk-server/runtime-body':
+      '@vunk-server/runtime-json':
         specifier: workspace:*
-        version: link:packages/runtime-body
+        version: link:packages/runtime-json
       '@vunk-server/shared':
         specifier: workspace:*
         version: link:packages/shared
@@ -289,7 +289,7 @@ importers:
 
   packages/koa: {}
 
-  packages/runtime-body: {}
+  packages/runtime-json: {}
 
   packages/shared:
     dependencies:
