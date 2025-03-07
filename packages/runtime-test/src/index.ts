@@ -19,6 +19,8 @@ const {
 export const render = baseRender as RootRenderFunction<TestElement>
 export const createApp = baseCreateApp as CreateAppFunction<TestElement>
 
+
+
 // convenience for one-off render validations
 export function renderToString (vnode: VNode): string {
   const root = nodeOps.createElement('div')

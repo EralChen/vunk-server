@@ -1,14 +1,16 @@
+import type { NormalObject } from '@vunk/shared'
 import type { JSONNodeTypes } from './const'
+
+export type JSONData = NormalObject | Array<any> | string | number | boolean | null
 
 export interface JSONElementNode {
   type: JSONNodeTypes
   tag: string
   children: JSONElementNode[]
   parentNode: JSONElementNode | null
-  props: Record<string, any>
-  value: any
+  props: NormalObject
+  json: JSONData
   text?: string
-  isComment?: boolean
 }
 
 export interface NodeOp {

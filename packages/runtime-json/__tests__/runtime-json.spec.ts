@@ -1,6 +1,6 @@
 import type { JSONElementNode } from '../'
 import { beforeEach, describe, expect, it } from 'vitest'
-import { createApp, h, JSONNodeTypes } from '../'
+import { createApp, Fragment, h, JSONNodeTypes } from '../'
 
 describe('runtime-json', () => {
   let container: JSONElementNode
@@ -19,9 +19,7 @@ describe('runtime-json', () => {
   it('should render basic text node', () => {
     const app = createApp({
       render () {
-        return h('div', null, [
-          h('name', null, '中国'),
-        ])
+        return h('name', null, '中国')
       },
     })
     app.mount(container)
@@ -34,15 +32,19 @@ describe('runtime-json', () => {
   it('should render nested nodes', () => {
     const app = createApp({
       render () {
-        return h('div', null, [
+        return [
           h('name', null, '中国'),
-          h('province', null, [
-            h('name', null, '广东'),
-            h('citys', null, [
-              h('city', null, '广州'),
+          h(Fragment, null, [
+            h('province', null, [
+              h('name', null, '广东'),
+              h('citys', null, [
+                h(Fragment, null, [
+                  h('city', null, '广州'),
+                ]),
+              ]),
             ]),
           ]),
-        ])
+        ]
       },
     })
     app.mount(container)
@@ -63,24 +65,27 @@ describe('runtime-json', () => {
   it('should handle array of cities', () => {
     const app = createApp({
       render () {
-        return h('div', null, [
+        return [
           h('province', null, [
             h('name', null, '广东'),
             h('citys', null, [
-              h('city', null, '广州'),
-              h('city', null, '深圳'),
-              h('city', null, '珠海'),
+              h(Fragment, null, [
+                h('city', null, '广州'),
+                h('city', null, '深圳'),
+                h('city', null, '珠海'),
+              ]),
             ]),
           ]),
           h('province', null, [
             h('name', null, '新疆'),
             h('citys', null, [
-              h('city', null, '乌鲁木齐'),
-              h('city', null, '喀什'),
+              h(Fragment, null, [
+                h('city', null, '乌鲁木齐'),
+                h('city', null, '喀什'),
+              ]),
             ]),
           ]),
-
-        ])
+        ]
       },
     })
     app.mount(container)
@@ -106,20 +111,26 @@ describe('runtime-json', () => {
   it('should handle multiple provinces', () => {
     const app = createApp({
       render () {
-        return h('div', null, [
-          h('province', null, [
-            h('name', null, '广东'),
-            h('citys', null, [
-              h('city', null, '广州'),
+        return [
+          h(Fragment, null, [
+            h('province', null, [
+              h('name', null, '广东'),
+              h('citys', null, [
+                h(Fragment, null, [
+                  h('city', null, '广州'),
+                ]),
+              ]),
+            ]),
+            h('province', null, [
+              h('name', null, '新疆'),
+              h('citys', null, [
+                h(Fragment, null, [
+                  h('city', null, '乌鲁木齐'),
+                ]),
+              ]),
             ]),
           ]),
-          h('province', null, [
-            h('name', null, '新疆'),
-            h('citys', null, [
-              h('city', null, '乌鲁木齐'),
-            ]),
-          ]),
-        ])
+        ]
       },
     })
     app.mount(container)
