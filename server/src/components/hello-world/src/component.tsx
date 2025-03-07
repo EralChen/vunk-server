@@ -8,9 +8,16 @@ export default defineComponent({
     },
   },
   setup (props) {
+    const test = () => (
+      <test>
+        Hello World
+      </test>
+    )
+
     return () => (
       <id>
-        {props.id}
+        <name>hhh</name>
+        {test()}
       </id>
     )
   },

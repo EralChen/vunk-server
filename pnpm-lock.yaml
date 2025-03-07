@@ -306,6 +306,9 @@ importers:
       '@koa/router':
         specifier: ^13.1.0
         version: 13.1.0
+      '@vunk-server/jsx-runtime':
+        specifier: workspace:*
+        version: link:../packages/jsx-runtime
       consola:
         specifier: ^3.4.0
         version: 3.4.0

@@ -1,7 +1,7 @@
 {
   "scripts": {
     "dev": "pnpm run -C app dev",
-    "ssr:dev": "pnpm run -C app-ssr dev",
+    "ssr:dev": "pnpm run -C server dev",
     "lint:fix": "oxlint . --fix",
     "lint": "eslint --fix docs/**/*.{ts,tsx,vue}",
     "build": "pnpm run -C app build",

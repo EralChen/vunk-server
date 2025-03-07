@@ -1,13 +1,13 @@
 {
   "compilerOptions": {
     "target": "esnext",
-    "jsx": "preserve",
+    "jsx": "react-jsx",
+    "jsxImportSource": "@vunk-server",
     "lib": ["esnext"],
     "useDefineForClassFields": false,
     "experimentalDecorators": true,
     "baseUrl": ".",
-    "rootDir": "../",
-    "module": "esnext",
+    "module": "ESNext",
     "moduleResolution": "node",
     "paths": {
       "@/*": [
@@ -25,6 +25,7 @@
   },
   "include": [
     "src/**/*.ts",
+    "src/**/*.tsx",
     "src/**/*.d.ts",
     "types/**/*.d.ts"
   ],
