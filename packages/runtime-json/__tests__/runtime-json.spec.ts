@@ -1,6 +1,6 @@
 import type { JSONElementNode } from '../'
 import { beforeEach, describe, expect, it } from 'vitest'
-import { createApp, JSONNodeTypes } from '../'
+import { createApp, h, JSONNodeTypes } from '../'
 
 describe('runtime-json', () => {
   let container: JSONElementNode
@@ -18,7 +18,11 @@ describe('runtime-json', () => {
 
   it('should render basic text node', () => {
     const app = createApp({
-      template: `<name>中国</name>`,
+      render () {
+        return h('div', null, [
+          h('name', null, '中国'),
+        ])
+      },
     })
     app.mount(container)
 
@@ -29,15 +33,17 @@ describe('runtime-json', () => {
 
   it('should render nested nodes', () => {
     const app = createApp({
-      template: `
-        <name>中国</name>
-        <province>
-          <name>广东</name>
-          <citys>
-            <city>广州</city>
-          </citys>
-        </province>
-      `,
+      render () {
+        return h('div', null, [
+          h('name', null, '中国'),
+          h('province', null, [
+            h('name', null, '广东'),
+            h('citys', null, [
+              h('city', null, '广州'),
+            ]),
+          ]),
+        ])
+      },
     })
     app.mount(container)
 
@@ -56,16 +62,18 @@ describe('runtime-json', () => {
 
   it('should handle array of cities', () => {
     const app = createApp({
-      template: `
-        <province>
-          <name>广东</name>
-          <citys>
-            <city>广州</city>
-            <city>深圳</city>
-            <city>珠海</city>
-          </citys>
-        </province>
-      `,
+      render () {
+        return h('div', null, [
+          h('province', null, [
+            h('name', null, '广东'),
+            h('citys', null, [
+              h('city', null, '广州'),
+              h('city', null, '深圳'),
+              h('city', null, '珠海'),
+            ]),
+          ]),
+        ])
+      },
     })
     app.mount(container)
 
@@ -83,20 +91,22 @@ describe('runtime-json', () => {
 
   it('should handle multiple provinces', () => {
     const app = createApp({
-      template: `
-        <province>
-          <name>广东</name>
-          <citys>
-            <city>广州</city>
-          </citys>
-        </province>
-        <province>
-          <name>新疆</name>
-          <citys>
-            <city>乌鲁木齐</city>
-          </citys>
-        </province>
-      `,
+      render () {
+        return h('div', null, [
+          h('province', null, [
+            h('name', null, '广东'),
+            h('citys', null, [
+              h('city', null, '广州'),
+            ]),
+          ]),
+          h('province', null, [
+            h('name', null, '新疆'),
+            h('citys', null, [
+              h('city', null, '乌鲁木齐'),
+            ]),
+          ]),
+        ])
+      },
     })
     app.mount(container)
 

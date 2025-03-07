@@ -8,6 +8,7 @@ export interface JSONElementNode {
   props: Record<string, any>
   value: any
   text?: string
+  isComment?: boolean
 }
 
 export interface NodeOp {

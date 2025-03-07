@@ -9,7 +9,6 @@ export default defineComponent({
 
   },
   setup (props, ctx) {
-    console.log('Hello World!')
     return () => ({
       id: props.id,
     })
