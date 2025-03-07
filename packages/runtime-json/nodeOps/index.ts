@@ -12,13 +12,7 @@ function createElement (tag: string): JSONElementNode {
     children: [],
     props: {},
     parentNode: null,
-    value: tag === 'root' || tag === 'div'
-      ? {}
-      : tag === 'province'
-        ? { name: '', citys: { city: [] } }
-        : tag === 'citys'
-          ? { city: [] }
-          : {}, // 特殊标签的初始化处理
+    value: {},
   })
   return node
 }
@@ -38,23 +32,12 @@ function createText (text: string): JSONElementNode {
 
 function setText (node: JSONElementNode, text: string): void {
   node.text = text
-  if (node.parentNode && node.parentNode.children.length === 1) {
-    const parent = node.parentNode
-    if (parent.tag === 'city') {
-      // city 标签的文本需要更新到citys的city数组中
-      const citys = parent.parentNode!
-      const cities = citys.value.city
-      const index = cities.indexOf(node.text)
-      if (index > -1) {
-        cities[index] = text
-      }
-    }
-    else {
-      // 其他节点，更新父节点的值
-      parent.value = text
-    }
-  }
   node.value = text
+
+  if (node.parentNode && node.parentNode.children.length === 1) {
+    // 如果是唯一的文本子节点，更新父节点的值
+    node.parentNode.value = text
+  }
 }
 
 function insert (
@@ -75,82 +58,35 @@ function insert (
     return
   }
 
-  // 如果父节点是容器节点，将子节点的值复制给父节点
-  if (parent.tag === 'root') {
-    parent.value = child.value
+  if (child.type === JSONNodeTypes.TEXT) {
+    // 如果是唯一的文本子节点，直接设置父节点的值
+    if (parent.children.length === 1) {
+      parent.value = child.text
+    }
     return
   }
 
-  // div 作为中间容器，它的值需要向上传递
-  if (child.tag === 'div') {
+  // 处理元素节点
+  if (child.type === JSONNodeTypes.ELEMENT) {
+    const tag = child.tag
+    const currentValue = parent.value[tag]
+
+    if (currentValue === undefined) {
+      // 第一次出现，直接设置值
+      parent.value[tag] = child.value
+    }
+    else if (Array.isArray(currentValue)) {
+      // 已经是数组，直接添加
+      currentValue.push(child.value)
+    }
+    else {
+      // 第二次出现，转换为数组
+      parent.value[tag] = [currentValue, child.value]
+    }
+
+    // 如果父节点是根节点，将其值设置为子节点的值
     if (parent.tag === 'root') {
       parent.value = child.value
-    }
-    return
-  }
-
-  // div 容器节点的特殊处理
-  if (parent.tag === 'div') {
-    if (child.tag === 'province') {
-      if (!parent.value.province) {
-        parent.value.province = []
-      }
-      parent.value.province.push(child.value)
-    }
-    else if (child.type === JSONNodeTypes.ELEMENT) {
-      parent.value[child.tag] = child.value
-    }
-    return
-  }
-
-  if (child.type === JSONNodeTypes.TEXT && parent.children.length === 1) {
-    if (parent.tag === 'city') {
-      // 使用父节点的 citys.city 数组
-      const citys = parent.parentNode!
-
-      if (citys.value.city) {
-        citys.value.city.push(child.text)
-      }
-    }
-    else if (parent.tag === 'name') {
-      // name 标签特殊处理，文本值需要存到 parent.value，并更新到正确的目标
-      parent.value = child.text
-      if (parent.parentNode) {
-        if (parent.parentNode.tag === 'province') {
-          // province 的 name
-          parent.parentNode.value[0] = child.text
-        }
-        else if (parent.parentNode.tag === 'div' || parent.parentNode.tag === 'root') {
-          // 根级别的 name
-          parent.parentNode.value.name = child.text
-        }
-      }
-    }
-    else {
-      // 其他普通节点，文本直接作为值
-      parent.value = child.text
-    }
-  }
-  else if (child.type === JSONNodeTypes.ELEMENT) {
-    if (parent.tag === 'province') {
-      // province 标签下的元素处理
-      if (child.tag === 'name') {
-        parent.value.name = child.value
-      }
-      else if (child.tag === 'citys') {
-        parent.value.citys = child.value
-      }
-    }
-    else if (child.tag === 'city' && child.children.length > 0) {
-      // 城市文本值直接加入到父节点(citys)的city数组中
-      const childText = child.children[0]?.text || ''
-
-      parent.value.city.push(childText)
-    }
-    else {
-      // 普通元素节点，将其值作为父节点的属性
-
-      parent.value[child.tag] = child.value
     }
   }
 }
@@ -164,26 +100,25 @@ function remove (child: JSONElementNode): void {
     }
     child.parentNode = null
 
-    // 注释节点不需要从父节点的 value 中移除
+    // 非注释节点需要从父节点的value中移除
     if (!child.isComment && child.type === JSONNodeTypes.ELEMENT) {
-      if (parent.tag === 'province') {
-        const index = parent.value.indexOf(child.value)
-        if (index > -1) {
-          parent.value.splice(index, 1)
-        }
-      }
-      else if (child.tag === 'city') {
-        const cities = parent.value.city
-        if (Array.isArray(cities)) {
-          const childText = child.children[0]?.text || ''
-          const index = cities.indexOf(childText)
-          if (index > -1) {
-            cities.splice(index, 1)
+      const tag = child.tag
+      const currentValue = parent.value[tag]
+
+      if (Array.isArray(currentValue)) {
+        // 如果是数组，移除对应值
+        const valueIndex = currentValue.indexOf(child.value)
+        if (valueIndex > -1) {
+          currentValue.splice(valueIndex, 1)
+          // 如果数组只剩一个元素，转回普通值
+          if (currentValue.length === 1) {
+            parent.value[tag] = currentValue[0]
           }
         }
       }
       else {
-        delete parent.value[child.tag]
+        // 非数组直接删除
+        delete parent.value[tag]
       }
     }
   }
@@ -204,7 +139,7 @@ function setElementText (node: JSONElementNode, text: string): void {
     node.value = text
   }
   else {
-    node.value = node.tag === 'province' ? [] : {}
+    node.value = {}
   }
 }
 

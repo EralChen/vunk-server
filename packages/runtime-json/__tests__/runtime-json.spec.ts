@@ -72,6 +72,14 @@ describe('runtime-json', () => {
               h('city', null, '珠海'),
             ]),
           ]),
+          h('province', null, [
+            h('name', null, '新疆'),
+            h('citys', null, [
+              h('city', null, '乌鲁木齐'),
+              h('city', null, '喀什'),
+            ]),
+          ]),
+
         ])
       },
     })
@@ -83,6 +91,12 @@ describe('runtime-json', () => {
           name: '广东',
           citys: {
             city: ['广州', '深圳', '珠海'],
+          },
+        },
+        {
+          name: '新疆',
+          citys: {
+            city: ['乌鲁木齐', '喀什'],
           },
         },
       ],
