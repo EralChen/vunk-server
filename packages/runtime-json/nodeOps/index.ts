@@ -1,6 +1,4 @@
 import type { JSONElementNode } from './types'
-import { markRaw } from '@vue/reactivity'
-import { JSONNodeTypes } from './const'
 import { createComment } from './createComment'
 import { createElement } from './createElement'
 import { createText } from './createText'

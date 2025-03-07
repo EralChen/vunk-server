@@ -1,6 +1,5 @@
-import type { JSONElementNode } from '../'
-import { beforeEach, describe, expect, it } from 'vitest'
-import { createApp, Fragment, h, JSONNodeTypes, nodeOps } from '../'
+import { expect, it } from 'vitest'
+import { createApp, h, nodeOps } from '../'
 
 it('should render basic text node', () => {
   const root = nodeOps.createElement('root')
