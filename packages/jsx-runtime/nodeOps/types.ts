@@ -1,4 +1,5 @@
 import type { NormalObject } from '@vunk/shared'
+import type { VNodeProps } from 'vue'
 import type { JSONNodeTypes } from './const'
 
 export type JSONData = NormalObject | Array<any> | string | number | boolean | null
@@ -9,8 +10,12 @@ export interface JSONElementNode {
   children: JSONElementNode[]
   parentNode: JSONElementNode | null
   props: NormalObject
-  json: JSONData
-  text?: string
+  value: JSONData
+  isArrayFragment?: boolean
+}
+
+export interface JSONNodeProps extends VNodeProps {
+  __v_isArrayFragment?: boolean
 }
 
 export interface NodeOp {

@@ -2,6 +2,7 @@ import consola from 'consola'
 import { expect, it } from 'vitest'
 import {
   createApp,
+  defineComponent,
   dumpOps,
   h,
   nextTick,
@@ -18,19 +19,27 @@ import {
   triggerEvent,
 } from '../src'
 
+export const ArrayFragment = defineComponent({
+  name: 'ArrayFragment',
+  setup (props, { slots }) {
+    return () => slots.default?.()
+  },
+})
+
 it('should work', () => {
   const root = nodeOps.createElement('div')
 
   consola.log('root', root)
 
   render(
-    h(
+    h(ArrayFragment, null, h(
       'div',
       {
         id: 'test',
       },
       'hello',
-    ),
+    )),
+
     root,
   )
 

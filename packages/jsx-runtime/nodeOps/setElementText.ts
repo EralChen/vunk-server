@@ -1,3 +1,4 @@
+import type { RendererOptions } from '@vue/runtime-core'
 import type { JSONElementNode } from './types'
 import { createText } from './createText'
 
@@ -6,13 +7,16 @@ import { createText } from './createText'
  * @param node
  * @param text
  */
-export function setElementText (node: JSONElementNode, text: string): void {
+export function setElementText (
+  node: JSONElementNode,
+  text: string,
+): void {
   // 清除所有子节点
   node.children.forEach((child) => {
     child.parentNode = null
   })
   node.children = []
-  node.json = null
+  node.value = null
 
   if (text) {
     // 创建新的文本节点
@@ -20,8 +24,6 @@ export function setElementText (node: JSONElementNode, text: string): void {
     textNode.parentNode = node
     node.children = [textNode]
 
-    node.json = {
-      [node.tag]: text,
-    }
+    node.value = text
   }
 }

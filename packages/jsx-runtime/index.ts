@@ -1,6 +1,8 @@
 import { nodeOps } from './nodeOps'
 import { Fragment, h } from './renderer'
 
+export { ArrayFragment } from './ArrayFragment'
+
 export { JSONElementNode, JSONNodeTypes, nodeOps } from './nodeOps'
 export * from './renderer'
 

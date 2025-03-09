@@ -25,7 +25,7 @@ export function middleware<
       },
     }).mount(root)
 
-    ctx.body = root.json
+    ctx.body = root.value
     consola.log('mounting app', ctx.body)
     await next()
   }

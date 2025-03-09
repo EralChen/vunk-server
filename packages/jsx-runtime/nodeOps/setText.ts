@@ -1,3 +1,4 @@
+import type { RendererOptions } from '@vue/runtime-core'
 import type { JSONElementNode } from './types'
 
 /**
@@ -7,6 +8,5 @@ export function setText (
   node: JSONElementNode,
   text: string,
 ) {
-  node.text = text
-  node.json = text
+  node.value = text
 }

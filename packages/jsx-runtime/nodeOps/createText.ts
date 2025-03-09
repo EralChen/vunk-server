@@ -1,5 +1,5 @@
 import type { JSONElementNode } from './types'
-import { markRaw, RendererOptions } from '@vue/runtime-core'
+import { markRaw } from '@vue/runtime-core'
 import { JSONNodeTypes } from './const'
 
 /**
@@ -12,8 +12,7 @@ export function createText (text: string): JSONElementNode {
     children: [],
     props: {},
     parentNode: null,
-    json: text,
-    text,
+    value: text,
   })
   return node
 }

@@ -15,20 +15,19 @@ export function remove (
     if (i > -1) {
       parent.children.splice(i, 1)
     }
-    if (Array.isArray(parent.json)) {
-      const jsonIndex = parent.json.indexOf(node.json)
+
+    if (Array.isArray(parent.value)) {
+      const jsonIndex = parent.value.indexOf(node.value)
       if (jsonIndex > -1) {
-        parent.json.splice(jsonIndex, 1)
+        parent.value.splice(jsonIndex, 1)
       }
     }
-    else if (isPlainObject(parent.json)) {
-      const tag = node.tag
-      if (tag in parent.json) {
-        delete parent.json[tag]
-      }
+
+    else if (isPlainObject(parent.value)) {
+      delete parent.value[node.tag]
     }
     else {
-      parent.json = null
+      parent.value = null
     }
 
     node.parentNode = null

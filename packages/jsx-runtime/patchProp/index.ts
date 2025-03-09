@@ -8,9 +8,4 @@ export function patchProp (
 ): void {
   // 更新 props
   el.props[key] = nextValue
-
-  // 更新 value
-  if (key === 'value') {
-    el.value = nextValue
-  }
 }
