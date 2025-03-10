@@ -10,7 +10,7 @@ export function middleware<
   Component: T,
 ): Middleware {
   return async (ctx, next) => {
-    const root = createElement('')
+    const root = createElement('root')
 
     createApp({
       setup (_, { slots }) {

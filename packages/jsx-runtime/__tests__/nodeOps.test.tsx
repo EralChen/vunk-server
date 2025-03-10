@@ -44,16 +44,22 @@ it('should  Fragment is Array', () => {
 
   const app = createApp({
     setup () {
-      return () => h(Fragment, null, [
-        h('item', '1'),
-        h('item', '2'),
-      ])
+      return () => (
+        <>
+          <options>
+            <label>1</label>
+            <value>2</value>
+          </options>
+        </>
+      )
     },
   })
 
   app.mount(root)
 
   expect(root.value).toEqual({
-    item: ['1', '2'],
+    options: [
+      { label: '1', value: '2' },
+    ],
   })
 })
