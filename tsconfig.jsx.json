@@ -23,7 +23,9 @@
   "include": [
     "typings/tsx.d.ts",
     "packages/jsx-runtime/**/*.ts",
-    "packages/jsx-runtime/**/*.tsx"
+    "packages/jsx-runtime/**/*.tsx",
+    "packages/components/**/*.tsx"
+
   ],
   "exclude": [
     "node_modules"

@@ -1,4 +1,5 @@
-import { defineComponent, Fragment } from '@vunk-server/jsx-runtime'
+import { SkResponse } from '@vunk-server/components/response'
+import { defineComponent } from '@vunk-server/jsx-runtime'
 
 export default defineComponent({
   props: {
@@ -14,25 +15,13 @@ export default defineComponent({
       }, 100)
     })
 
-    const test = () => (
-      <Fragment array>
+    return () => (
+      <SkResponse>
         <test>
           { data }
         </test>
         <test> Hello World2 </test>
-      </Fragment>
-    )
-
-    return () => (
-      <>
-        <code>{ 200 }</code>
-        <data>
-          { test() }
-        </data>
-        <message>
-          操作成功
-        </message>
-      </>
+      </SkResponse>
     )
   },
 })

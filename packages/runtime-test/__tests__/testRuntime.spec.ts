@@ -19,26 +19,19 @@ import {
   triggerEvent,
 } from '../src'
 
-export const ArrayFragment = defineComponent({
-  name: 'ArrayFragment',
-  setup (props, { slots }) {
-    return () => slots.default?.()
-  },
-})
-
 it('should work', () => {
   const root = nodeOps.createElement('div')
 
   consola.log('root', root)
 
   render(
-    h(ArrayFragment, null, h(
+    h(
       'div',
       {
         id: 'test',
       },
       'hello',
-    )),
+    ),
 
     root,
   )
