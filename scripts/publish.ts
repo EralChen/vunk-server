@@ -95,7 +95,7 @@ export default series(
 
   gulpTask('publish', async () => {
     run(
-      'npm publish --tag alpha --registry https://registry.npmjs.org --access public',
+      'npm publish --registry https://registry.npmjs.org --access public',
       distDir,
     )
   }),
