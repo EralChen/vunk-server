@@ -23,11 +23,13 @@ pnpm add @vunk/server
 
 ```typescript
 // main.ts
-import { middleware } from '@vunk-server/koa'
+import { middleware } from '@vunk/server'
 import Koa from 'koa'
+import KoaBodyParsers from 'koa-body-parsers'
 import HelloWorld from './components/hello-world'
 
 const app = new Koa()
+KoaBodyParsers(app)
 
 app.use(middleware(HelloWorld))
 
@@ -108,11 +110,19 @@ defineComponent({
 })
 ```
 
+`app.use(middleware(EntryComponent))` 入口组件中。
+
+默认将 `ctx.query`, `ctx.request.json()` 传递给组件的 props。
+
+你可以在组件中直接使用这些 props。
+
+> ctx.request.json() 需要使用 [koa-body-parsers](https://www.npmjs.com/package/koa-body-parsers) 中间件来解析请求体。
+
 ### Setup 函数
 
 setup 函数是组件的核心，支持异步操作：
 
-```typescript
+```tsx
 async setup(props) {
   const data = await fetchData(props.id)
   
@@ -143,42 +153,7 @@ src/
   main.ts                 # 应用入口
 ```
 
-### 错误处理
 
-使用 try/catch 处理异步操作：
-
-```typescript
-async setup() {
-  try {
-    const data = await fetchData()
-    return () => (
-      <>
-        <code>200</code>
-        <data>{data}</data>
-      </>
-    )
-  } catch (error) {
-    return () => (
-      <>
-        <code>500</code>
-        <message>{error.message}</message>
-      </>
-    )
-  }
-}
-```
-
-### 响应格式
-
-推荐使用统一的响应格式：
-
-```typescript
-{
-  code: number      // 状态码
-  data: any         // 响应数据
-  message: string   // 响应消息
-}
-```
 
 ## API 参考
 
@@ -195,9 +170,15 @@ defineComponent({
 
 ### Fragment
 
-用于返回多个元素：
+默认会使用 XML的自然规律对数组处理
 
-```typescript
++ 当同名元素首次出现时作为普通值
++ 当同名元素第二次出现时自动转为数组
++ 后续出现时继续追加到数组
+
+
+使用 `Fragment array` 可以显式约定字段为数组
+```tsx
 <Fragment array>
   <item>1</item>
 </Fragment>
