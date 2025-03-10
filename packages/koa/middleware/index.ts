@@ -12,13 +12,17 @@ export function middleware<
   return async (ctx, next) => {
     const root = createElement('root')
 
+    const query = ctx.query
+    const json = await ctx.request?.json()
+
     createApp({
       setup (_, { slots }) {
         inject(KoaKey, { context: ctx })
         return () => h(
           Component,
           {
-            id: 'testid',
+            ...json,
+            ...query,
           },
           slots,
         )
