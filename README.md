@@ -192,3 +192,32 @@ defineComponent({
 }
 ```
 
+### v-json
+
+用于直接设置元素的值，保持原始类型：
+
+```tsx
+// 原始值
+<count v-json={42} />
+<active v-json={true} />
+
+// 对象
+<user v-json={{ name: 'test', age: 18 }} />
+
+// 数组
+<scores v-json={[90, 85, 95]} />
+```
+
+将生成：
+
+```json
+{
+  "count": 42,
+  "active": true,
+  "user": {
+    "name": "test",
+    "age": 18
+  },
+  "scores": [90, 85, 95]
+}
+```
