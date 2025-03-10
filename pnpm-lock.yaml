@@ -32,9 +32,6 @@ importers:
       '@vunk-server/components':
         specifier: workspace:*
         version: link:packages/components
-      '@vunk-server/core':
-        specifier: workspace:*
-        version: link:packages/core
       '@vunk-server/jsx-runtime':
         specifier: workspace:*
         version: link:packages/jsx-runtime
@@ -93,9 +90,6 @@ importers:
       '@types/gulp':
         specifier: ^4.0.17
         version: 4.0.17
-      '@types/koa-bodyparser':
-        specifier: ^4.3.12
-        version: 4.3.12
       '@types/node':
         specifier: 18.0.4
         version: 18.0.4
@@ -288,8 +282,6 @@ importers:
   packages/components: {}
 
   packages/composables: {}
-
-  packages/core: {}
 
   packages/entry: {}
 
@@ -2426,9 +2418,6 @@ packages:
 
   '@types/keygrip@1.0.6':
     resolution: {integrity: sha512-lZuNAY9xeJt7Bx4t4dx0rYCDqGPW8RXhQZK1td7d4H6E9zYbLoOtjBvfwdTKpsyxQI/2jv+armjX/RW+ZNpXOQ==}
-
-  '@types/koa-bodyparser@4.3.12':
-    resolution: {integrity: sha512-hKMmRMVP889gPIdLZmmtou/BijaU1tHPyMNmcK7FAHAdATnRcGQQy78EqTTxLH1D4FTsrxIzklAQCso9oGoebQ==}
 
   '@types/koa-compose@3.2.8':
     resolution: {integrity: sha512-4Olc63RY+MKvxMwVknCUDhRQX1pFQoBZ/lXcRLP69PQkEpze/0cr8LNqJQe5NFb/b19DWi2a5bTi2VAlQzhJuA==}
@@ -10463,10 +10452,6 @@ snapshots:
       '@types/node': 18.0.4
 
   '@types/keygrip@1.0.6': {}
-
-  '@types/koa-bodyparser@4.3.12':
-    dependencies:
-      '@types/koa': 2.15.0
 
   '@types/koa-compose@3.2.8':
     dependencies:
