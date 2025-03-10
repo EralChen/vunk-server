@@ -2,12 +2,6 @@ import { SkResponse } from '@vunk-server/components/response'
 import { defineComponent } from '@vunk-server/jsx-runtime'
 
 export default defineComponent({
-  props: {
-    id: {
-      type: String,
-      required: true,
-    },
-  },
   async setup () {
     const data = await new Promise<string>((resolve) => {
       setTimeout(() => {

@@ -29,7 +29,9 @@
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.d.ts",
-    "types/**/*.d.ts"
+    "types/**/*.d.ts",
+    "../packages/components/**/*.ts",
+    "../packages/components/**/*.tsx"
   ],
   "exclude": [
     "node_modules"

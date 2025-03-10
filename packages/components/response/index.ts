@@ -1,5 +1,5 @@
 import type { App } from 'vue'
-import SkResponse from './src/index.vue'
+import SkResponse from './src/index'
 
 export * as __SkResponse from './src/types'
 

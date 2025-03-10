@@ -24,6 +24,7 @@
     "typings/tsx.d.ts",
     "packages/jsx-runtime/**/*.ts",
     "packages/jsx-runtime/**/*.tsx",
+    "packages/jsx-runtime/**/*.ts",
     "packages/components/**/*.tsx"
 
   ],
