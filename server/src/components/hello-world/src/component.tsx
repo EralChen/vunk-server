@@ -1,4 +1,4 @@
-import { ArrayFragment, defineComponent } from '@vunk-server/jsx-runtime'
+import { defineComponent, Fragment } from '@vunk-server/jsx-runtime'
 
 export default defineComponent({
   props: {
@@ -9,18 +9,22 @@ export default defineComponent({
   },
   setup () {
     const test = () => (
-      <ArrayFragment>
-        <test>
-          Hello World
-        </test>
-      </ArrayFragment>
+      <Fragment array>
+        <test> Hello World1 </test>
+        <test> Hello World2 </test>
+      </Fragment>
     )
 
     return () => (
-      <id>
-        <name>hhh</name>
-        {test()}
-      </id>
+      <>
+        <code>{ 200 }</code>
+        <data>
+          { test() }
+        </data>
+        <message>
+          操作成功
+        </message>
+      </>
     )
   },
 })

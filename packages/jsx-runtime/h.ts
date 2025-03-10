@@ -37,7 +37,7 @@ export function h (
     }
   }
 
-  if (Fragment === type) {
+  if (Fragment === type && props.array) {
     children.forEach((element) => {
       element.props = element.props || {}
       const props: JSONNodeProps = element.props
