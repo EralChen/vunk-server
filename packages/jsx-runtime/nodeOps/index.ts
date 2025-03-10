@@ -10,6 +10,10 @@ import { setText } from './setText'
 export * from './const'
 export * from './types'
 
+export type {
+  JSONElementNode,
+}
+
 function parentNode (node: JSONElementNode): JSONElementNode | null {
   return node.parentNode
 }

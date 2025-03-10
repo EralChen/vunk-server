@@ -1,6 +1,5 @@
 import { LIB_ALIAS, LIB_NAME } from './name'
 
-
 export const libExternal = [
   'vue',
   /^@vunk\/core/,
@@ -8,11 +7,10 @@ export const libExternal = [
   /^@vunk\/form/,
   /^element-plus/,
   /^@vueuse\/core/,
+  /^@vue/,
   new RegExp(`^${LIB_NAME}`),
   new RegExp(`^${LIB_ALIAS}`),
 ]
-
-
 
 export const filePathIgnore = [
   'gulpfile.ts',
@@ -21,4 +19,3 @@ export const filePathIgnore = [
   '**/README.md',
   '**/__tests__/**.ts',
 ]
-

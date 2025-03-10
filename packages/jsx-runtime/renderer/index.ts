@@ -2,7 +2,7 @@ import type {
   CreateAppFunction,
   RootRenderFunction,
 } from '@vue/runtime-core'
-import type { JSONElementNode } from '../nodeOps'
+import type { JSONElementNode } from '../'
 import {
   createRenderer,
 } from '@vue/runtime-core'

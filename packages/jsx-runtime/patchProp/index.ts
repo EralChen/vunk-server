@@ -1,4 +1,4 @@
-import type { JSONElementNode } from '../nodeOps'
+import type { JSONElementNode } from '../'
 import consola from 'consola'
 
 export function patchProp (

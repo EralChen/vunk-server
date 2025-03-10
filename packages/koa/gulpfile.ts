@@ -8,7 +8,9 @@ import { parallel } from 'gulp'
 
 const buildFile = '**/index.ts'
 const baseDirname = __dirname.split(path.sep).pop() as string
-const external = []
+const external = [
+  'koa',
+]
 
 const filePaths = sync(buildFile, {
   cwd: path.resolve(__dirname, './'),
