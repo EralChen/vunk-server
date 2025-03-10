@@ -7,10 +7,18 @@ export default defineComponent({
       required: true,
     },
   },
-  setup () {
+  async setup () {
+    const data = await new Promise<string>((resolve) => {
+      setTimeout(() => {
+        resolve('Hello World')
+      }, 100)
+    })
+
     const test = () => (
       <Fragment array>
-        <test> Hello World1 </test>
+        <test>
+          { data }
+        </test>
         <test> Hello World2 </test>
       </Fragment>
     )

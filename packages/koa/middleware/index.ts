@@ -1,6 +1,7 @@
 import type { Component } from '@vunk-server/jsx-runtime'
 import type { Middleware } from 'koa'
-import { createApp, createElement, h, inject } from '@vunk-server/jsx-runtime'
+import { Deferred } from '@vunk/core/shared/utils-promise'
+import { createApp, createElement, h, inject, Suspense } from '@vunk-server/jsx-runtime'
 import consola from 'consola'
 import { KoaKey } from '../'
 
@@ -15,22 +16,33 @@ export function middleware<
     const query = ctx.query
     const json = await ctx.request?.json()
 
+    const nextDef = new Deferred()
+
     createApp({
       setup (_, { slots }) {
         inject(KoaKey, { context: ctx })
         return () => h(
-          Component,
+          Suspense,
           {
-            ...json,
-            ...query,
+            onResolve,
           },
-          slots,
+          h(
+            Component,
+            {
+              ...json,
+              ...query,
+            },
+            slots,
+          ),
         )
       },
     }).mount(root)
 
-    ctx.body = root.value
-    consola.log('mounting app', ctx.body)
-    await next()
+    function onResolve () {
+      ctx.body = root.value
+      next().then(nextDef.resolve)
+    }
+
+    await nextDef.promise
   }
 }
