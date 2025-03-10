@@ -45,12 +45,12 @@ it('should  Fragment is Array', () => {
   const app = createApp({
     setup () {
       return () => (
-        <>
+        <Fragment array>
           <options>
             <label>1</label>
             <value>2</value>
           </options>
-        </>
+        </Fragment>
       )
     },
   })
