@@ -1,31 +1,13 @@
 <script lang="tsx">
 import { defineComponent } from 'vue'
+import { ArrayFragment } from './test'
 
 export default defineComponent({
-  props: {
-    id: {
-      type: String,
-      default: '',
-    },
-    type: {
-      type: String,
-      required: true,
-    },
-
-  },
-  setup (props) {
+  setup () {
     return () => (
-      <div>
+      <ArrayFragment>
         <h1>Home</h1>
-        <p>
-          id:
-          {props.id}
-        </p>
-        <p>
-          type:
-          {props.type}
-        </p>
-      </div>
+      </ArrayFragment>
     )
   },
 

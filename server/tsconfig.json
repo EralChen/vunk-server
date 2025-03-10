@@ -18,8 +18,10 @@
     "types": [
       "node"
     ],
+    "allowImportingTsExtensions": true,
     "allowJs": true,
     "strict": true,
+    "noEmit": true,
     "sourceMap": true,
     "esModuleInterop": true
   },

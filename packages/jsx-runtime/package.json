@@ -1,9 +1,6 @@
 {
   "name": "@vunk-server/jsx-runtime",
-  "type": "module",
   "private": true,
-  "main": "index.ts",
-  "module": "index.ts",
   "scripts": {
     "build": "gulp -f gulpfile.ts"
   }

@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest'
-import { ArrayFragment, createApp, defineComponent, Fragment, h, nodeOps } from '..'
+import { createApp, Fragment, h, nodeOps } from '..'
 
 it('should render basic text node', () => {
   const root = nodeOps.createElement('root')
@@ -44,17 +44,16 @@ it('should  Fragment is Array', () => {
 
   const app = createApp({
     setup () {
-      return () => (
-        <ArrayFragment>
-          <item>1</item>
-        </ArrayFragment>
-      )
+      return () => h(Fragment, null, [
+        h('item', '1'),
+        h('item', '2'),
+      ])
     },
   })
 
   app.mount(root)
 
   expect(root.value).toEqual({
-    item: ['1'],
+    item: ['1', '2'],
   })
 })

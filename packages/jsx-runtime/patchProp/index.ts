@@ -1,4 +1,5 @@
 import type { JSONElementNode } from '../nodeOps'
+import consola from 'consola'
 
 export function patchProp (
   el: JSONElementNode,
@@ -6,6 +7,7 @@ export function patchProp (
   prevValue: any,
   nextValue: any,
 ): void {
-  // 更新 props
+  consola.log('patchProp', `key: ${key}, prevValue: ${prevValue}, nextValue: ${nextValue}`)
+
   el.props[key] = nextValue
 }

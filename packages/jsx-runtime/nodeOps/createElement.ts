@@ -1,4 +1,4 @@
-import type { createVNode, ElementNamespace, RendererOptions, VNodeProps } from '@vue/runtime-core'
+import type { ElementNamespace } from '@vue/runtime-core'
 import type { JSONElementNode, JSONNodeProps } from './types'
 import { markRaw } from '@vue/runtime-core'
 import { JSONNodeTypes } from './const'

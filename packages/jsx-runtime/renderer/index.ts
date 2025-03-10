@@ -1,8 +1,10 @@
+import type {
+  CreateAppFunction,
+  RootRenderFunction,
+} from '@vue/runtime-core'
 import type { JSONElementNode } from '../nodeOps'
 import {
-  type CreateAppFunction,
   createRenderer,
-  type RootRenderFunction,
 } from '@vue/runtime-core'
 import { extend } from '@vue/shared'
 import { nodeOps } from '../nodeOps'
