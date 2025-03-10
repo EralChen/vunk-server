@@ -2,7 +2,6 @@ import type { Component } from '@vunk-server/jsx-runtime'
 import type { Middleware } from 'koa'
 import { Deferred } from '@vunk/core/shared/utils-promise'
 import { createApp, createElement, h, inject, Suspense } from '@vunk-server/jsx-runtime'
-import consola from 'consola'
 import { KoaKey } from '../'
 
 export function middleware<

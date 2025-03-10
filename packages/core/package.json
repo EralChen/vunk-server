@@ -1,9 +1,0 @@
-{
-  "name": "@vunk-server/core",
-  "type": "module",
-  "private": true,
-  "module": "index.ts",
-  "scripts": {
-    "build": "gulp -f gulpfile.ts"
-  }
-}
