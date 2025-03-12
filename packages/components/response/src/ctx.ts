@@ -5,10 +5,6 @@ export const props = {
     type: Number,
     default: 200,
   },
-  data: {
-    type: Object,
-    default: () => ({}),
-  },
   message: {
     type: String,
     default: '操作成功',
