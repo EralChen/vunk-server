@@ -1,12 +1,12 @@
 import type { App } from 'vue'
-import SkResponse from './src/index'
+import VkResponse from './src/index'
 
-export * as __SkResponse from './src/types'
+export * as __VkResponse from './src/types'
 
-SkResponse.install = (app: App): void => {
-  app.component(SkResponse.name || 'SkResponse', SkResponse)
+VkResponse.install = (app: App): void => {
+  app.component(VkResponse.name || 'VkResponse', VkResponse)
 }
 export {
-  SkResponse,
+  VkResponse,
 }
-export default SkResponse
+export default VkResponse

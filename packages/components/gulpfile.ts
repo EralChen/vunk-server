@@ -1,11 +1,12 @@
 import path from 'node:path'
 import { filePathIgnore } from '@lib-env/build-constants'
 import { genTypes, rollupFiles } from '@lib-env/build-utils'
-import { distDir } from '@lib-env/path'
-import { createTsPlugins, createVuePlugins } from '@vunk/shared/build/rollup/plugins'
+import { distDir, workRoot } from '@lib-env/path'
+import { nodeResolve } from '@rollup/plugin-node-resolve'
 import { gulpTask } from '@vunk/shared/function'
 import { sync } from 'fast-glob'
 import { parallel } from 'gulp'
+import esbuild from 'rollup-plugin-esbuild'
 
 const buildFile = '**/index.ts'
 const baseDirname = __dirname.split(path.sep).pop() as string
@@ -25,8 +26,17 @@ export default parallel(
       outputDir: path.resolve(distDir, baseDirname),
       external,
       plugins: [
-        ...createTsPlugins(),
-        ...createVuePlugins(),
+        nodeResolve(),
+        esbuild({
+          target: 'esnext',
+          tsconfig: path.resolve(workRoot, './tsconfig.json'),
+          tsconfigRaw: {
+            compilerOptions: {
+              jsx: 'react-jsx',
+              jsxImportSource: '@vunk/server',
+            },
+          },
+        }),
       ],
     })
   }),

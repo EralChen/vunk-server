@@ -19,6 +19,17 @@
 pnpm add @vunk/server
 ```
 
+**tsconfig.json**
+
+```json 
+{
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "@vunk/server"
+  }
+}
+```
+
 ### 基础示例
 
 ```typescript
@@ -40,7 +51,7 @@ app.listen(3000, () => {
 
 ```tsx
 // components/hello-world/src/component.tsx
-import { defineComponent, Fragment } from '@vunk-server/jsx-runtime'
+import { defineComponent } from '@vunk/server'
 
 export default defineComponent({
   props: {

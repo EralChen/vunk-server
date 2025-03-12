@@ -2,7 +2,7 @@ import { defineComponent } from 'vue'
 import { emits, props } from './ctx'
 
 export default defineComponent({
-  name: 'SkResponse',
+  name: 'VkResponse',
   props,
   emits,
   setup (props, { slots }) {

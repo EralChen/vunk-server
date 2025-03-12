@@ -1,4 +1,4 @@
-import { SkResponse } from '@vunk-server/components/response'
+import { VkResponse } from '@vunk-server/components/response'
 import { defineComponent } from '@vunk-server/jsx-runtime'
 
 export default defineComponent({
@@ -10,12 +10,12 @@ export default defineComponent({
     })
 
     return () => (
-      <SkResponse>
+      <VkResponse>
         <test>
           { data }
         </test>
         <test> Hello World2 </test>
-      </SkResponse>
+      </VkResponse>
     )
   },
 })
