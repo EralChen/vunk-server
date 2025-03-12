@@ -9,6 +9,7 @@ export const props = {
     type: String,
     default: '操作成功',
   },
+  data: null,
 }
 
 export const emits = {

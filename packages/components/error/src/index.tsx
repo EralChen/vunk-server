@@ -1,5 +1,5 @@
 import { VkResponse } from '@vunk-server/components/response'
-import { computed, defineComponent, ref } from 'vue'
+import { computed, defineComponent } from 'vue'
 import { emits, props } from './ctx'
 
 export default defineComponent({
@@ -24,6 +24,7 @@ export default defineComponent({
       <VkResponse
         code={props.code}
         message={message.value}
+        data={{}}
       >
       </VkResponse>
     )

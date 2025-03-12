@@ -17,15 +17,8 @@ export function middleware<
     const json = await ctx.request?.json()
     const nextDef = new Deferred()
 
-    const app = createApp({
-      errorCaptured (error) {
-        createApp({
-          mounted: onResolve,
-          render () {
-            return h(VkError, { error })
-          },
-        }).mount(root)
-      },
+    const successApp = createApp({
+      errorCaptured,
       setup (_, { slots }) {
         inject(KoaKey, { context: ctx })
         return () => h(
@@ -44,7 +37,18 @@ export function middleware<
         )
       },
     })
-    app.mount(root)
+    successApp.mount(root)
+
+    function errorCaptured (error: Error) {
+      successApp.unmount()
+
+      createApp({
+        mounted: onResolve,
+        render () {
+          return h(VkError, { error })
+        },
+      }).mount(root)
+    }
 
     function onResolve () {
       ctx.body = root.value
