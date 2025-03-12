@@ -8,13 +8,17 @@ export default defineComponent({
         resolve('Hello World')
       }, 100)
     })
+    const json = {
+      a: 1,
+      b: 2,
+    }
 
     return () => (
       <VkResponse>
         <test>
           { data }
         </test>
-        <test> Hello World2 </test>
+        <item v-json={json}>111</item>
       </VkResponse>
     )
   },
