@@ -12,6 +12,20 @@ const buildFile = '**/index.ts'
 const baseDirname = __dirname.split(path.sep).pop() as string
 const external = []
 
+const plugins = [
+  nodeResolve(),
+  esbuild({
+    target: 'esnext',
+    tsconfig: path.resolve(workRoot, './tsconfig.json'),
+    tsconfigRaw: {
+      compilerOptions: {
+        jsx: 'react-jsx',
+        jsxImportSource: '@vunk/server',
+      },
+    },
+  }),
+]
+
 const filePaths = sync(buildFile, {
   cwd: path.resolve(__dirname, './'),
   onlyFiles: true,
@@ -21,24 +35,24 @@ const filePaths = sync(buildFile, {
 
 export default parallel(
   gulpTask(`bundle ${baseDirname}`, async () => {
-    await rollupFiles({
-      input: filePaths,
-      outputDir: path.resolve(distDir, baseDirname),
-      external,
-      plugins: [
-        nodeResolve(),
-        esbuild({
-          target: 'esnext',
-          tsconfig: path.resolve(workRoot, './tsconfig.json'),
-          tsconfigRaw: {
-            compilerOptions: {
-              jsx: 'react-jsx',
-              jsxImportSource: '@vunk/server',
-            },
-          },
-        }),
-      ],
-    })
+    await Promise.all([
+      rollupFiles({
+        input: filePaths,
+        outputDir: path.resolve(distDir, baseDirname),
+        external,
+        plugins,
+      }),
+      rollupFiles({
+        input: filePaths,
+        outputDir: path.resolve(distDir, baseDirname),
+        external,
+        plugins,
+        outputExtname: '.cjs',
+        outputOptions: {
+          format: 'cjs',
+        },
+      }),
+    ])
   }),
   gulpTask(`gen ${baseDirname} types`, async () => {
     await genTypes({

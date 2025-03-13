@@ -19,11 +19,22 @@ const filePaths = sync(buildFile, {
 
 export default parallel(
   gulpTask(`bundle ${baseDirname}`, async () => {
-    await rollupFiles({
-      input: filePaths,
-      outputDir: path.resolve(distDir, baseDirname),
-      external,
-    })
+    await Promise.all([
+      rollupFiles({
+        input: filePaths,
+        outputDir: path.resolve(distDir, baseDirname),
+        external,
+      }),
+      rollupFiles({
+        input: filePaths,
+        outputDir: path.resolve(distDir, baseDirname),
+        external,
+        outputExtname: '.cjs',
+        outputOptions: {
+          format: 'cjs',
+        },
+      }),
+    ])
   }),
   gulpTask(`gen ${baseDirname} types`, async () => {
     await genTypes({

@@ -41,11 +41,14 @@ export default series(
       }>
     }
 
+    Reflect.deleteProperty(jsonObj, 'scripts')
+
     jsonObj.module = 'index.esm.js'
-    jsonObj.main = 'index.esm.js'
+    jsonObj.main = 'index.cjs.js'
     jsonObj.exports = {
       '.': {
         import: './index.esm.js',
+        require: './index.cjs.js',
         types: './index.d.ts',
       },
     }
