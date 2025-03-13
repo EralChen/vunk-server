@@ -1,4 +1,4 @@
-import { defineComponent } from 'vue'
+import { defineComponent } from '@vunk-server/jsx-runtime'
 import { emits, props } from './ctx'
 
 export default defineComponent({

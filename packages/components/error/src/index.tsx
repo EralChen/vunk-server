@@ -1,5 +1,5 @@
 import { VkResponse } from '@vunk-server/components/response'
-import { computed, defineComponent } from 'vue'
+import { computed, defineComponent } from '@vunk-server/jsx-runtime'
 import { emits, props } from './ctx'
 
 export default defineComponent({
