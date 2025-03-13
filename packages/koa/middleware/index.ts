@@ -43,9 +43,10 @@ export function middleware<
       successApp.unmount()
 
       createApp({
-        mounted: onResolve,
         setup () {
-          return () => h(VkError, { error })
+          return () => h(Suspense, {
+            onResolve,
+          }, h(VkError, { error }))
         },
       }).mount(root)
     }

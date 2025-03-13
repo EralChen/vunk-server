@@ -9,6 +9,8 @@ export default defineComponent({
       b: 2,
     }
 
+    throw new Error('test error')
+
     return () => (
       <VkResponse>
         <test>
