@@ -16,7 +16,7 @@
 ### 安装
 
 ```bash
-pnpm add @vunk/server
+pnpm add @vunk/server @vue/runtime-core koa
 ```
 
 **tsconfig.json**
@@ -24,8 +24,11 @@ pnpm add @vunk/server
 ```json 
 {
   "compilerOptions": {
+    "target": "ESNext",
     "jsx": "react-jsx",
-    "jsxImportSource": "@vunk/server"
+    "jsxImportSource": "@vunk/server",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
   }
 }
 ```
@@ -47,6 +50,14 @@ app.use(middleware(HelloWorld))
 app.listen(3000, () => {
   console.log('Server is running on http://localhost:3000')
 })
+process.on('unhandledRejection', (err) => {
+  // 将错误信息发送到 dist/err.log 文件
+  fs.promises.appendFile(
+    'dist/err.log',
+    `${new Date().toISOString()} - ${err}\n\n`,
+  )
+})
+
 ```
 
 ```tsx
