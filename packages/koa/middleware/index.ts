@@ -1,7 +1,7 @@
 import type { Component } from '@vunk-server/jsx-runtime'
 import type { Middleware } from 'koa'
 import { Deferred } from '@vunk/core/shared/utils-promise'
-import VkError from '@vunk-server/components/error'
+import { VkError } from '@vunk-server/components/error'
 import { createApp, createElement, h, inject, Suspense } from '@vunk-server/jsx-runtime'
 import { KoaKey } from '../useKoa'
 
@@ -43,10 +43,14 @@ export function middleware<
       successApp.unmount()
 
       createApp({
+        mounted: onResolve,
         setup () {
-          return () => h(Suspense, {
-            onResolve,
-          }, h(VkError, { error }))
+          return () => h(
+            VkError,
+            {
+              error,
+            },
+          )
         },
       }).mount(root)
     }
