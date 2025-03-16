@@ -1,12 +1,13 @@
+import fsp from 'node:fs/promises'
+import path from 'node:path'
+import { pkgsComponentsDir } from '@lib-env/path'
+
+import { gulpTask } from '@vunk/shared/function'
 import { parallel, series } from 'gulp'
 import mri from 'mri'
-import { gulpTask } from '@vunk/shared/function'
-
-import fsp from 'fs/promises'
-import path from 'path'
-import { pkgsComponentsDir } from '@lib-env/path'
 import { camelize, capitalize } from 'vue'
-import { createCtxStr, createIndexStr, createTypesStr, createVueStr } from './temp'
+import { createCtxStr, createIndexStr, createTsxStr, createTypesStr } from './temp'
+
 interface MriData {
   name: string // aaa-bbb
 }
@@ -36,10 +37,10 @@ export default series(
         createTypesStr(),
       )
     }),
-    gulpTask('createVueFile', async () => {
+    gulpTask('createTsxFile', async () => {
       return fsp.appendFile(
-        path.resolve(srcPath, './index.vue'),
-        createVueStr(capName),
+        path.resolve(srcPath, './index.tsx'),
+        createTsxStr(capName),
       )
     }),
     gulpTask('createCtxFile', async () => {
@@ -49,7 +50,5 @@ export default series(
       )
     }),
 
-
   ),
 )
-

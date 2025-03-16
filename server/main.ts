@@ -1,15 +1,26 @@
 import fs from 'node:fs'
+import KoaRouter from '@koa/router'
 import { middleware } from '@vunk-server/koa'
 import consola from 'consola'
 import Koa from 'koa'
 import koaBodyParsers from 'koa-body-parsers'
-import HelloWorld from './components/hello-world'
+import ResponseView from './src/views/response'
 
 const app = new Koa()
+const router = new KoaRouter()
+
 koaBodyParsers(app)
 
-// Response time middleware
-app.use(middleware(HelloWorld))
+// 处理跨域
+app.use(async (ctx, next) => {
+  ctx.set('Access-Control-Allow-Origin', '*')
+  await next()
+})
+
+router.get('/response', middleware(ResponseView))
+
+app.use(router.routes())
+app.use(router.allowedMethods())
 
 process.on('unhandledRejection', (err) => {
   // 将错误信息发送到 dist/err.log 文件

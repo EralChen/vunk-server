@@ -1,10 +1,23 @@
 {
-  "select": {
-    "text": "Select 选择器",
+  "basic": {
+    "text": "Basic 基础",
     "children": [
       {
-        "link": "/user-select-tables",
-        "text": "UserSelectTables"
+        "link": "/response",
+        "text": "Response"
+      },
+      {
+        "link": "/error",
+        "text": "Error"
+      }
+    ]
+  },
+  "fs": {
+    "text": "Fs 文件系统",
+    "children": [
+      {
+        "link": "/upload",
+        "text": "Upload"
       }
     ]
   }

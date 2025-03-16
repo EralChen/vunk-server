@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Component-based server development inspired by Vue",
   "scripts": {
-    "dev": "tsx ./src/main.ts --tsconfig ./tsconfig.json",
+    "dev": "tsx ./main.ts --tsconfig ./tsconfig.json",
     "build": "rollup -c",
     "serve": "tsx ./dist/main.js"
   },

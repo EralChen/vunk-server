@@ -7,7 +7,7 @@ interface ImportMetaEnv {
    * 接口统一地址
    */
   VITE_BASE_API: string
-  
+
   /**
    * 默认快开平台接口地址
    */

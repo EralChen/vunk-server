@@ -2,9 +2,9 @@
   "configurations": [
     {
       "type": "node-terminal",
-      "name": "Run Script: ssr:dev",
+      "name": "Run Script: server:dev",
       "request": "launch",
-      "command": "pnpm run ssr:dev",
+      "command": "pnpm run server:dev",
       "cwd": "${workspaceFolder}"
     }
   ]

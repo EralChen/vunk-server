@@ -1,10 +1,11 @@
-import { capitalize } from 'vue'
 import { LIB_PRE } from '@lib-env/build-constants'
+import { capitalize } from 'vue'
 
 // vk => Vk
 const pre = capitalize(LIB_PRE)
 
-export const createIndexStr = capName => `import { App } from 'vue'
+export function createIndexStr (capName) {
+  return `import { App } from 'vue'
 import ${pre}${capName} from './src/index.vue'
 export * as __${pre}${capName} from './src/types'
 
@@ -16,12 +17,16 @@ export {
 }
 export default ${pre}${capName}
 `
+}
 
-export const createTypesStr = () => `
+export function createTypesStr () {
+  return `
 export {}
 `
+}
 
-export const createVueStr = (capName:string) => `<script lang="ts">
+export function createVueStr (capName: string) {
+  return `<script lang="ts">
 import { props, emits } from './ctx'
 import { defineComponent } from 'vue'
 export default defineComponent({
@@ -37,8 +42,24 @@ export default defineComponent({
   <div>${capName}</div>
 </template>
 `
+}
 
-export const createCtxStr = () => `import { PropType } from 'vue'
+export function createTsxStr (capName: string) {
+  return `import { defineComponent } from 'vue'
+import { props, emits } from './ctx'
+export default defineComponent({
+  name: '${pre}${capName}',
+  emits,
+  props,
+  setup (props, { emit }) {
+    return () => <></>
+  },
+})
+`
+}
+
+export function createCtxStr () {
+  return `import { PropType } from 'vue'
 
 export const props = {
   modelValue: {
@@ -49,3 +70,4 @@ export const props = {
 
 export const emits = {
 }`
+}

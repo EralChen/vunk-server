@@ -1,6 +1,8 @@
 import type { OnCreateAppSync } from 'vike-vue/types'
+
 import { VkClientOnly } from '@vunk/core/components/client-only'
 import ElmentPlus, { ID_INJECTION_KEY } from 'element-plus'
+import '../api/init'
 
 import 'uno.css'
 import '#/src/styles'
