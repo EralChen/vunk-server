@@ -1,9 +1,10 @@
 import fs from 'node:fs'
 import KoaRouter from '@koa/router'
-import { middleware } from '@vunk-server/koa'
+import { CatchErrorMiddleware, middleware } from '@vunk-server/koa'
 import consola from 'consola'
 import Koa from 'koa'
 import koaBodyParsers from 'koa-body-parsers'
+import ErrorView from './src/views/error'
 import ResponseView from './src/views/response'
 
 const app = new Koa()
@@ -17,7 +18,10 @@ app.use(async (ctx, next) => {
   await next()
 })
 
+app.use(CatchErrorMiddleware)
+
 router.get('/response', middleware(ResponseView))
+router.get('/error', middleware(ErrorView))
 
 app.use(router.routes())
 app.use(router.allowedMethods())

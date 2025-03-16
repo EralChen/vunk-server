@@ -1,4 +1,4 @@
---- 
+---
 title: Response
 lang: zh-CN
 ---
@@ -7,11 +7,20 @@ lang: zh-CN
 
 Response
 
+## Client Demo
 
-## Basic
-
-:::demo 
+:::demo
 response/basic
 :::
 
-## Response 其他
+## Server Component
+
+:::source
+response.tsx
+:::
+
+## Response Props
+
+:::props
+response/src/ctx
+:::

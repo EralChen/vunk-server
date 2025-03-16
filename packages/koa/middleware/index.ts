@@ -1,4 +1,4 @@
-import type { Component } from '@vunk-server/jsx-runtime'
+import type { Component, ComponentPublicInstance } from '@vunk-server/jsx-runtime'
 import type { Middleware } from 'koa'
 import { Deferred } from '@vunk/core/shared/utils-promise'
 import { VkError } from '@vunk-server/components/error'
@@ -39,7 +39,11 @@ export function middleware<
     })
     successApp.mount(root)
 
-    function errorCaptured (error: Error) {
+    function errorCaptured (
+      error: Error,
+      instance: ComponentPublicInstance,
+      info: string,
+    ) {
       successApp.unmount()
 
       createApp({
@@ -49,6 +53,8 @@ export function middleware<
             VkError,
             {
               error,
+              instance: instance.$options.name,
+              info,
             },
           )
         },

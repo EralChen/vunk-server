@@ -19,13 +19,29 @@ export default defineComponent({
       }
       return '操作失败'
     })
+    const stack = computed(() => {
+      if (props.error instanceof Error) {
+        return props.error.stack
+      }
+      return ''
+    })
+    const name = computed(() => {
+      if (props.error instanceof Error) {
+        return props.error.name
+      }
+      return ''
+    })
 
     return () => (
       <VkResponse
         code={props.code}
         message={message.value}
-        data={{}}
       >
+        <stack>{stack.value}</stack>
+        <name>{ name.value }</name>
+        <component>VkError</component>
+        <info>{props.info}</info>
+        <instance>{props.instance}</instance>
       </VkResponse>
     )
   },

@@ -1,17 +1,27 @@
---- 
-title: Error
-lang: zh-CN
----
-
 # Error
 
 Error
 
+## Client Demo
 
-## Basic
-
-:::demo 
+:::demo
 error/basic
 :::
 
-## Error 其他
+## Server Component
+
+:::source
+error.tsx
+:::
+
+## Response Props
+
+:::props
+error/src/ctx
+:::
+
+## ErrorData
+
+:::source
+components/error/src/types.ts
+:::

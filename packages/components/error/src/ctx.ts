@@ -4,6 +4,15 @@ export const props = {
     type: Number,
     default: 500,
   },
+  info: {
+    type: String,
+    default: '',
+  },
+
+  instance: {
+    type: String,
+    default: '',
+  },
 }
 
 export const emits = {

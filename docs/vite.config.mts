@@ -86,7 +86,10 @@ export default defineConfig(async ({ mode }) => {
           codeSourceTransform: fixPath,
         },
         sourceContainerPluginSettings: {
-          root: path.resolve(workRoot, 'packages'),
+          root: [
+            path.resolve(workRoot, 'packages'),
+            path.resolve(workRoot, 'server/src/views'),
+          ],
         },
         propsContainerPluginSettings: {
           root: path.resolve(workRoot, 'packages/components'),
