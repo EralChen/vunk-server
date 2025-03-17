@@ -11,11 +11,10 @@ export interface JSONElementNode {
   parentNode: JSONElementNode | null
   props: NormalObject
   value: JSONData
-  isArrayFragment?: boolean
 }
 
 export interface JSONNodeProps extends VNodeProps {
-  __v_isArrayFragment?: boolean
+  value?: any
 }
 
 export interface NodeOp {

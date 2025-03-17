@@ -1,6 +1,7 @@
 import type { ElementNamespace } from '@vue/runtime-core'
 import type { JSONElementNode, JSONNodeProps } from './types'
 import { markRaw } from '@vue/runtime-core'
+import { de, sw } from 'element-plus/es/locale'
 import { JSONNodeTypes } from './const'
 
 /**
@@ -12,16 +13,26 @@ export function createElement (
   isCustomizedBuiltIn?: string,
   props?: JSONNodeProps,
 ): JSONElementNode {
-  const node: JSONElementNode = markRaw({
-    type: JSONNodeTypes.ELEMENT,
-    tag,
-    children: [],
-    props: props ?? {},
-    parentNode: null,
-    value: null,
-    isArrayFragment: props?.__v_isArrayFragment,
-
-  })
-
-  return node
+  switch (tag) {
+    case 'vk:element': {
+      return markRaw({
+        type: JSONNodeTypes.ELEMENT,
+        tag: '',
+        children: [],
+        props: props ?? {},
+        parentNode: null,
+        value: props?.value,
+      })
+    }
+    default: {
+      return markRaw({
+        type: JSONNodeTypes.FIELD,
+        tag,
+        children: [],
+        props: props ?? {},
+        parentNode: null,
+        value: null,
+      })
+    }
+  }
 }

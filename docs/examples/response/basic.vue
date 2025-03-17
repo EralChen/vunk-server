@@ -5,7 +5,7 @@ import { rResponse } from './api'
 const data = ref()
 
 rResponse().then((res) => {
-  data.value = res.data
+  data.value = res
 })
 </script>
 

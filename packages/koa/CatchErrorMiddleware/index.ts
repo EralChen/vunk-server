@@ -14,6 +14,8 @@ export const CatchErrorMiddleware: Middleware = async (ctx, next) => {
       return
     }
 
+    console.error(err)
+
     throw err
   }
 }

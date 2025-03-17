@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@koa/router": "^13.1.0",
+    "@vunk-server/components": "workspace:*",
     "@vunk-server/jsx-runtime": "workspace:*",
     "consola": "^3.4.0",
     "koa": "^2.16.0"

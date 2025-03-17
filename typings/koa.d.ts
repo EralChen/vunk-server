@@ -1,3 +1,4 @@
+import type { NormalObject } from '@vunk/shared'
 import type { Buffer } from 'node:buffer'
 
 declare module 'koa' {
@@ -26,6 +27,8 @@ declare module 'koa' {
      * @param limit Size limit (defaults to 1mb)
      */
     buffer: (limit?: string | number) => Promise<Buffer>
+
+    body: (limit?: string | number) => Promise<NormalObject>
   }
 
   interface Response {

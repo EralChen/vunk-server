@@ -6,7 +6,7 @@ const pre = capitalize(LIB_PRE)
 
 export function createIndexStr (capName) {
   return `import { App } from 'vue'
-import ${pre}${capName} from './src/index.vue'
+import ${pre}${capName} from './src/index'
 export * as __${pre}${capName} from './src/types'
 
 ${pre}${capName}.install = (app: App): void => {

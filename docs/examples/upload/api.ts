@@ -1,9 +1,10 @@
 import { restFetch } from '@vunk-server/shared'
 
-export function rResponse () {
+export function testUpload () {
   return restFetch.request({
     method: 'POST',
-    url: '/response',
+    url: '/upload',
+    contentType: 'multipart/form-data',
     data: {
       name: 'vunk-server',
     },

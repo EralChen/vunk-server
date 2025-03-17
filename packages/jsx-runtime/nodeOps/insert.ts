@@ -1,5 +1,6 @@
 import type { RendererOptions } from '@vue/runtime-core'
 import type { JSONElementNode } from './types'
+import { isObject, isPlainObject } from '@vunk/shared/object'
 import { JSONNodeTypes } from './const'
 import { remove } from './remove'
 
@@ -49,31 +50,59 @@ export function insertNodeJson (
     return
   }
 
-  // 首次插入
-  if (parent.value == null) { // <parent> <node>1</node> </parent>
-    parent.value = {}
+  // <parent> <node>1</node> </parent>
+  if (node.type === JSONNodeTypes.FIELD) {
+    // 首次插入
+    if (parent.value == null) {
+      parent.value = {}
+    }
+    const currentValue = parent.value[node.tag]
+    if (currentValue === null || currentValue === undefined) {
+      parent.value[node.tag] = node.value
+      return
+    }
+    // 如果当前值不是数组，说明重复插入了相同的 tag，需要转换为数组
+    if (!Array.isArray(currentValue)) {
+      parent.value[node.tag] = [currentValue]
+    }
+    const i = parent.children
+      .filter(child => child.value)
+      .filter(child => child.tag === node.tag)
+      .indexOf(node)
+
+    if (i > -1) {
+      parent.value[node.tag].splice(i, 0, node.value)
+    }
   }
 
-  const currentValue = parent.value[node.tag]
+  // <parent> <vk:element value="1"></vk:element> </parent>
+  if (node.type === JSONNodeTypes.ELEMENT) {
+    // 首次插入
+    if (parent.value == null) {
+      parent.value = node.value
+      return
+    }
 
-  if (currentValue === null || currentValue === undefined) {
-    parent.value[node.tag] = node.isArrayFragment
-      ? [node.value]
-      : node.value
-    return
-  }
+    if (isPlainObject(parent.value)) {
+      if (isObject(node.value)) {
+        Object.assign(parent.value, node.value)
+      }
+      else {
+        Object.assign(parent.value, {
+          undifined: node.value,
+        })
+      }
+      return
+    }
 
-  // 如果当前值不是数组，说明重复插入了相同的 tag，需要转换为数组
-  if (!Array.isArray(currentValue)) {
-    parent.value[node.tag] = [currentValue]
-  }
+    if (Array.isArray(parent.value)) {
+      const i = parent.children
+        .filter(child => child.value)
+        .indexOf(node)
 
-  const i = parent.children
-    .filter(child => child.value)
-    .filter(child => child.tag === node.tag)
-    .indexOf(node)
-
-  if (i > -1) {
-    parent.value[node.tag].splice(i, 0, node.value)
+      if (i > -1) {
+        parent.value.splice(i, 0, node.value)
+      }
+    }
   }
 }

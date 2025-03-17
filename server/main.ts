@@ -6,22 +6,25 @@ import Koa from 'koa'
 import koaBodyParsers from 'koa-body-parsers'
 import ErrorView from './src/views/error'
 import ResponseView from './src/views/response'
+import UploadView from './src/views/upload'
 
 const app = new Koa()
 const router = new KoaRouter()
 
 koaBodyParsers(app)
 
-// 处理跨域
 app.use(async (ctx, next) => {
   ctx.set('Access-Control-Allow-Origin', '*')
+  ctx.set('Access-Control-Allow-Headers', 'Content-Type')
+
   await next()
 })
 
 app.use(CatchErrorMiddleware)
 
-router.get('/response', middleware(ResponseView))
+router.post('/response', middleware(ResponseView))
 router.get('/error', middleware(ErrorView))
+router.post('/upload', middleware(UploadView))
 
 app.use(router.routes())
 app.use(router.allowedMethods())
@@ -34,6 +37,6 @@ process.on('unhandledRejection', (err) => {
   )
 })
 
-app.listen(process.env.PORT || 3000, () => {
-  consola.log(`Server is running on http://localhost:${process.env.PORT || 3000}`)
+app.listen(process.env.PORT || 4545, () => {
+  consola.log(`Server is running on http://localhost:${process.env.PORT || 4545}`)
 })

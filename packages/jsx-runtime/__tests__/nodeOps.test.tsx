@@ -41,27 +41,19 @@ it('should handle array transformation naturally', () => {
   })
 })
 
-it('should  Fragment is Array', () => {
+it('should vk:element work', () => {
   const root = nodeOps.createElement('root')
 
   const app = createApp({
     setup () {
       return () => (
-        <Fragment array>
-          <options>
-            <label>1</label>
-            <value>2</value>
-          </options>
-        </Fragment>
+        <vk:element value={[]}>
+          <vk:element value={1} />
+        </vk:element>
       )
     },
   })
-
   app.mount(root)
 
-  expect(root.value).toEqual({
-    options: [
-      { label: '1', value: '2' },
-    ],
-  })
+  expect(root.value).toEqual([1])
 })

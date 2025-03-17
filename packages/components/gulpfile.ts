@@ -2,6 +2,7 @@ import path from 'node:path'
 import { filePathIgnore } from '@lib-env/build-constants'
 import { genTypes, rollupFiles } from '@lib-env/build-utils'
 import { distDir, workRoot } from '@lib-env/path'
+import commonjs from '@rollup/plugin-commonjs'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 import { gulpTask } from '@vunk/shared/function'
 import { sync } from 'fast-glob'
@@ -24,6 +25,7 @@ const plugins = [
       },
     },
   }),
+  commonjs(),
 ]
 
 const filePaths = sync(buildFile, {

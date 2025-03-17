@@ -6,5 +6,11 @@
   "keywords": [],
   "scripts": {
     "build": "gulp -f gulpfile.ts"
+  },
+  "dependencies": {
+    "busboy": "^1.6.0"
+  },
+  "devDependencies": {
+    "@types/busboy": "^1.5.4"
   }
 }

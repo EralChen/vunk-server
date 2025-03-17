@@ -38,14 +38,6 @@ export function h (
     }
   }
 
-  if (Fragment === type && props.array) {
-    children.forEach((element) => {
-      element.props = element.props || {}
-      const props: JSONNodeProps = element.props
-      props.__v_isArrayFragment = true
-    })
-  }
-
   if (
     isComponent(type)
     && isArray(children)

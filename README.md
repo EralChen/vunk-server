@@ -190,7 +190,7 @@ defineComponent({
 })
 ```
 
-### Fragment
+### 标签渲染
 
 默认会使用 XML的自然规律对数组处理
 
@@ -199,20 +199,6 @@ defineComponent({
 + 后续出现时继续追加到数组
 
 
-使用 `Fragment array` 可以显式约定字段为数组
-```tsx
-<Fragment array>
-  <item>1</item>
-</Fragment>
-```
-
-将生成数组响应：
-
-```json
-{
-  "item": ['1']
-}
-```
 
 ### v-raw
 
