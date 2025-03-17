@@ -36,7 +36,7 @@ export default defineComponent({
       file
         .on('data', (data) => {
           emit('setData', {
-            k: [name, index, data],
+            k: [name, index, 'data'],
             v: data,
           })
         })
