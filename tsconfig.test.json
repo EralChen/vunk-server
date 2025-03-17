@@ -2,9 +2,10 @@
   "compilerOptions": {
     "composite": true,
     "target": "esnext",
-    "jsx": "react-jsx",
-    "jsxImportSource": "@vunk-server",
-    "lib": ["esnext"],
+    "jsx": "preserve",
+    "jsxFactory": "h",
+    "jsxFragmentFactory": "Fragment",
+    "lib": ["ESNext"],
     "useDefineForClassFields": false,
     "experimentalDecorators": true,
     "baseUrl": ".",
@@ -21,7 +22,8 @@
   },
   "include": [
     "typings/tsx.d.ts",
-    "packages/components/**/*.tsx"
+    "packages/jsx-runtime/__tests__/*.tsx",
+    "packages/jsx-runtime/**/*.ts"
   ],
   "exclude": [
     "node_modules"

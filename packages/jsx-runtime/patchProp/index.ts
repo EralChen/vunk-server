@@ -9,7 +9,7 @@ export function patchProp (
   el.props[key] = nextValue
 
   if (
-    key === 'v-json'
+    key === 'v-raw'
     && nextValue !== undefined
   ) { // 模拟指令
     el.value = nextValue

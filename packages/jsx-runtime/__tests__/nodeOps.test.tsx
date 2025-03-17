@@ -1,3 +1,5 @@
+/** @jsx h */
+/** @jsxFrag Fragment */
 import { expect, it } from 'vitest'
 import { createApp, Fragment, h, nodeOps } from '..'
 

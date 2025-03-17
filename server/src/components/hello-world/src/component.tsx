@@ -16,7 +16,7 @@ export default defineComponent({
         <test>
           { data }
         </test>
-        <item v-json={json}>111</item>
+        <item v-raw={json}>111</item>
       </VkResponse>
     )
   },

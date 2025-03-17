@@ -211,20 +211,20 @@ defineComponent({
 }
 ```
 
-### v-json
+### v-raw
 
 用于直接设置元素的值，保持原始类型：
 
 ```html
 // 原始值
-<count v-json={42} />
-<active v-json={true} />
+<count v-raw={42} />
+<active v-raw={true} />
 
 // 对象
-<user v-json={{ name: 'test', age: 18 }} />
+<user v-raw={{ name: 'test', age: 18 }} />
 
 // 数组
-<scores v-json={[90, 85, 95]} />
+<scores v-raw={[90, 85, 95]} />
 ```
 
 将生成：

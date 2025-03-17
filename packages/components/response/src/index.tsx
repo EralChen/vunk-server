@@ -8,8 +8,8 @@ export default defineComponent({
   setup (props, { slots }) {
     return () => (
       <>
-        <code v-json={props.code}></code>
-        <data v-json={props.data}>
+        <code v-raw={props.code}></code>
+        <data v-raw={props.data}>
           { slots.default?.() }
         </data>
         <message>
