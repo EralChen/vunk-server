@@ -3,6 +3,9 @@ declare global {
     interface IntrinsicElements {
       [key: string]: any
     }
+    export interface IntrinsicAttributes {
+      array?: boolean
+    }
   }
 }
 
