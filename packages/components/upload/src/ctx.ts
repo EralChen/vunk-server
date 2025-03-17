@@ -5,6 +5,10 @@ export const props = {
     type: Object,
     default: () => ({}),
   },
+  path: {
+    type: String,
+    default: '',
+  },
 }
 
 export const emits = {

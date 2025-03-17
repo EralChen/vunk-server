@@ -1,3 +1,5 @@
+import fs from 'node:fs'
+import path from 'node:path'
 import { useDeferred } from '@vunk/core/composables'
 import { useKoa } from '@vunk-server/koa'
 import busboy from 'busboy'
@@ -32,6 +34,14 @@ export default defineComponent({
       })
 
       fileFieldIndexMap.set(name, index + 1)
+
+      if (props.path) { // Save file to disk
+        if (!fs.existsSync(props.path)) {
+          fs.mkdirSync(props.path)
+        }
+        const saveTo = path.join(props.path, filename)
+        file.pipe(fs.createWriteStream(saveTo))
+      }
 
       file
         .on('data', (data) => {
