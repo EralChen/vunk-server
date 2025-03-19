@@ -1,4 +1,4 @@
-# Introduction 介绍
+# @vunk/server
 
 一个创新的 Node.js 服务端框架，让你用熟悉的 Vue 组件方式编写服务端接口。
 
@@ -144,17 +144,16 @@ defineComponent({
 setup 函数是组件的核心，支持异步操作：
 
 ```tsx
-defineComponent({
-  async setup (props) {
-    const data = await fetchData(props.id)
-    return () => (
-      <>
-        <code>200</code>
-        <data>{data}</data>
-      </>
-    )
-  }
-})
+async setup(props) {
+  const data = await fetchData(props.id)
+
+  return () => (
+    <>
+      <code>200</code>
+      <data>{data}</data>
+    </>
+  )
+}
 ```
 
 ## 最佳实践
@@ -196,11 +195,35 @@ defineComponent({
 + 当同名元素第二次出现时自动转为数组
 + 后续出现时继续追加到数组
 
+### vk:element
+
+特殊标签，用于直接控制响应数据的结构和值。通过 `value` 属性设置数据。
+
+#### 基础用法
+
+1. 创建数组：
+```tsx
+<vk:element value={[]}>
+  <vk:element value={1} />
+  <vk:element value={2} />
+</vk:element>
+// 输出: [1, 2]
+```
+
+2. 对象处理：
+```tsx
+<vk:element value={{}}>
+  <vk:element value={{ name: 'Tom' }} />
+  <vk:element value={{ age: 18 }} />
+</vk:element>
+// 输出: { "name": "Tom", "age": 18 }
+```
+
 ### v-raw
 
 用于直接设置元素的值，保持原始类型：
 
-```html
+```tsx
 // 原始值
 <count v-raw={42} />
 <active v-raw={true} />

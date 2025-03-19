@@ -5,10 +5,14 @@
   "scripts": {
     "dev": "tsx ./main.ts --tsconfig ./tsconfig.json",
     "build": "rollup -c",
-    "serve": "tsx ./dist/main.js"
+    "serve": "tsx ./dist/main.js",
+    "task": "npx prisma generate",
+    "studio": "prisma studio"
   },
   "dependencies": {
     "@koa/router": "^13.1.0",
+    "@prisma/client": "6.5.0",
+    "@prisma/extension-accelerate": "1.2.2",
     "@vunk-server/components": "workspace:*",
     "@vunk-server/jsx-runtime": "workspace:*",
     "consola": "^3.4.0",
@@ -17,6 +21,7 @@
   "devDependencies": {
     "@rollup/plugin-json": "^6.1.0",
     "@types/koa__router": "^12.0.4",
+    "prisma": "6.5.0",
     "unplugin-vue-jsx": "^0.6.1"
   }
 }

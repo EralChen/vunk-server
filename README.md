@@ -200,6 +200,30 @@ defineComponent({
 
 
 
+### vk:element
+
+特殊标签，用于直接控制响应数据的结构和值。通过 `value` 属性设置数据。
+
+#### 基础用法
+
+1. 创建数组：
+```tsx
+<vk:element value={[]}>
+  <vk:element value={1} />
+  <vk:element value={2} />
+</vk:element>
+// 输出: [1, 2]
+```
+
+2. 对象处理：
+```tsx
+<vk:element value={{}}>
+  <vk:element value={{ name: 'Tom' }} />
+  <vk:element value={{ age: 18 }} />
+</vk:element>
+// 输出: { "name": "Tom", "age": 18 }
+```
+
 ### v-raw
 
 用于直接设置元素的值，保持原始类型：
