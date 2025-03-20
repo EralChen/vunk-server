@@ -65,7 +65,15 @@ model User {
 
 **model** 是 Prisma [数据建模](https://prisma.org.cn/docs/orm/overview/introduction/data-modeling) 的结果。
 
-保持 `schema.prisma` 文件和数据库表结构一致是 `Prisma CLI` 的主要工作。`schema.prisma` 确保了 **Prisma Client** 能够拥有类型安全的查询构建器。
+`schema.prisma` 确保了 **Prisma Client** 能够拥有类型安全的查询构建器。
+
+使用 `prisma generate` 命令会根据 **schema.prisma** 来生成 Prisma Client。
+
+```bash
+prisma generate
+```
+
+保持 `schema.prisma` 文件和数据库表结构一致是 `Prisma CLI` 的主要工作。
 
 而从数据库同步结构的过程被称为 `Introspect`. 以下是 `Introspect` 的工作流程:
 
