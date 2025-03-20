@@ -11,7 +11,7 @@ error/basic
 ## Server Component
 
 :::source
-error.tsx
+views/error.tsx
 :::
 
 ## Koa Middleware

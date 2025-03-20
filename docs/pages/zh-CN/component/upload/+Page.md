@@ -1,4 +1,4 @@
---- 
+---
 title: Upload
 lang: zh-CN
 ---
@@ -7,10 +7,9 @@ lang: zh-CN
 
 Upload
 
-
 ## Basic
 
-:::demo 
+:::demo
 upload/basic
 :::
 

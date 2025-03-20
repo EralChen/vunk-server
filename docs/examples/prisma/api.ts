@@ -1,22 +1,25 @@
-import { restFetch } from '@vunk-server/shared'
+import type { User } from '@prisma/client'
+import { request } from '@vunk-server/shared'
 
 export function rUser () {
-  return restFetch.request({
+  return request<User[]>({
     method: 'GET',
     url: '/prisma_try',
-  })
+  }).then(res => res.data)
 }
 
-export function cuUser (data: {}) {
-  return restFetch.request({
-    method: 'POST',
+export async function cuUser (data: Partial<User>) {
+  return request<User[]>({
+    method: data.id ? 'PUT' : 'POST',
     url: '/prisma_try',
-  })
+    data,
+  }).then(res => res.data)
 }
 
-export function dUser () {
-  return restFetch.request({
+export function dUser (id: string) {
+  return request({
     method: 'DELETE',
     url: '/prisma_try',
+    params: { id },
   })
 }

@@ -45,8 +45,8 @@ importers:
         specifier: ^1.4.4
         version: 1.4.4
       '@vunk/plus':
-        specifier: ^0.2.0
-        version: 0.2.0
+        specifier: ^1.1.4
+        version: 1.1.4
       '@vunk/server':
         specifier: workspace:*
         version: link:packages/entry
@@ -294,9 +294,6 @@ importers:
       '@types/koa__router':
         specifier: ^12.0.4
         version: 12.0.4
-      prisma:
-        specifier: 6.5.0
-        version: 6.5.0(typescript@5.6.3)
       unplugin-vue-jsx:
         specifier: ^0.6.1
         version: 0.6.1(vue@3.5.13(typescript@5.6.3))
@@ -2639,8 +2636,8 @@ packages:
   '@vunk/gsap@0.0.0-alpha.3':
     resolution: {integrity: sha512-UTyP4VmeAoMY+eab/OhFyyXrd21W4zgQuV2px4r/5x8iox187yf3AH42zuI//ub+loVTgE74iu9MQasTJ8NdMw==}
 
-  '@vunk/plus@0.2.0':
-    resolution: {integrity: sha512-0xhteHuzJDNg0gAP5Cscqeoo1rygq9qJSQ9tUZWYxQz1+hLa0sLRtUzFUR++CMsvbykv6ZVIjmm6oQgQhNVyFQ==}
+  '@vunk/plus@1.1.4':
+    resolution: {integrity: sha512-TRff70op993l1+E0cVXbe92vs7pmcgqGXFk5Pb6GheSrCLrupvTqmOLcp133SsUhjW3z4Fm3yAX3loOr6LCwLA==}
 
   '@vunk/shared@0.5.55':
     resolution: {integrity: sha512-KtAwWIcf00KWOqzeSzdgWc7xhL8aIO4uY+DMfk4kRrVCIpb1p/XghDp6/eoUhtKwxmDbdZxV0B3RKtnUil5njQ==}
@@ -7986,10 +7983,13 @@ snapshots:
       esbuild-register: 3.6.0(esbuild@0.24.0)
     transitivePeerDependencies:
       - supports-color
+    optional: true
 
-  '@prisma/debug@6.5.0': {}
+  '@prisma/debug@6.5.0':
+    optional: true
 
-  '@prisma/engines-version@6.5.0-73.173f8d54f8d52e692c7e27e72a88314ec7aeff60': {}
+  '@prisma/engines-version@6.5.0-73.173f8d54f8d52e692c7e27e72a88314ec7aeff60':
+    optional: true
 
   '@prisma/engines@6.5.0':
     dependencies:
@@ -7997,6 +7997,7 @@ snapshots:
       '@prisma/engines-version': 6.5.0-73.173f8d54f8d52e692c7e27e72a88314ec7aeff60
       '@prisma/fetch-engine': 6.5.0
       '@prisma/get-platform': 6.5.0
+    optional: true
 
   '@prisma/extension-accelerate@1.2.2(@prisma/client@6.5.0(prisma@6.5.0(typescript@5.6.3))(typescript@5.6.3))':
     dependencies:
@@ -8007,10 +8008,12 @@ snapshots:
       '@prisma/debug': 6.5.0
       '@prisma/engines-version': 6.5.0-73.173f8d54f8d52e692c7e27e72a88314ec7aeff60
       '@prisma/get-platform': 6.5.0
+    optional: true
 
   '@prisma/get-platform@6.5.0':
     dependencies:
       '@prisma/debug': 6.5.0
+    optional: true
 
   '@rollup/plugin-alias@5.1.1(rollup@3.29.5)':
     optionalDependencies:
@@ -9560,7 +9563,7 @@ snapshots:
 
   '@vunk/gsap@0.0.0-alpha.3': {}
 
-  '@vunk/plus@0.2.0': {}
+  '@vunk/plus@1.1.4': {}
 
   '@vunk/shared@0.5.55': {}
 
@@ -10487,6 +10490,7 @@ snapshots:
       esbuild: 0.24.0
     transitivePeerDependencies:
       - supports-color
+    optional: true
 
   esbuild@0.19.12:
     optionalDependencies:
@@ -12969,6 +12973,7 @@ snapshots:
       typescript: 5.6.3
     transitivePeerDependencies:
       - supports-color
+    optional: true
 
   prismjs@1.29.0: {}
 

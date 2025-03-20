@@ -16,7 +16,7 @@ response/basic
 ## Server Component
 
 :::source
-response.tsx
+views/response.tsx
 :::
 
 ## Response Props

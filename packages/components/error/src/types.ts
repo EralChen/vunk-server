@@ -1,7 +1,4 @@
 export interface ErrorData {
-  /**
-   * 错误组件
-   */
   component: 'VkError'
 
   /**
