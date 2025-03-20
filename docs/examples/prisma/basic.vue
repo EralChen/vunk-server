@@ -3,7 +3,7 @@ import type { User } from '@prisma/client'
 import type { __VkTablesV1 } from '@vunk/plus/components/tables-v1'
 import type { Pagination } from '@vunk/shared'
 import { VkTablesV1 } from '@vunk/plus/components/tables-v1'
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import {
   cuUser as createOrUpdateApi,
   dUser as deleteApi,
@@ -22,14 +22,19 @@ const tableColumns: __VkTablesV1.Column[] = [
 
 const pagination = ref<Pagination>({
   currentPage: 1,
-  pageSize: 10,
+  pageSize: 1,
 })
 const total = ref(0)
 
+watch(() => pagination.value, read, { deep: true })
+
 read()
 function read () {
-  readApi()
-    .then(res => tableData.value = res)
+  readApi({}, pagination.value)
+    .then((res) => {
+      tableData.value = res.rows
+      total.value = res.total
+    })
 }
 </script>
 
@@ -40,5 +45,6 @@ function read () {
     :data="tableData"
     :columns="tableColumns"
     :total="total"
+    background
   ></VkTablesV1>
 </template>

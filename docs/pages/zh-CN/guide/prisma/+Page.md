@@ -97,10 +97,19 @@ composables/usePrisma.ts
 ### Server 组件
 
 ```ts
-router.all('/prisma_try', middleware(PrismaTryView))
+router.get('/prisma_try', middleware(PrismaTryView))
 ```
 :::source
 views/prisma_try.tsx
+:::
+
+## 客户端使用
+
+:::demo
+prisma/basic
+>>>subs
+[prisma/api]
+>>>
 :::
 
 <br><br><br>

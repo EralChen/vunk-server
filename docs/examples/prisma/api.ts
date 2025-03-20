@@ -1,10 +1,21 @@
 import type { User } from '@prisma/client'
+import type { NormalObject, Pagination } from '@vunk/shared'
 import { request } from '@vunk-server/shared'
 
-export function rUser () {
-  return request<User[]>({
+export function rUser (
+  query: NormalObject,
+  pagination?: Pagination,
+) {
+  return request<{
+    rows: User[]
+    total: number
+  }>({
     method: 'GET',
     url: '/prisma_try',
+    params: {
+      ...query,
+      ...pagination,
+    },
   }).then(res => res.data)
 }
 

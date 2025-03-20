@@ -26,7 +26,7 @@ app.use(CatchErrorMiddleware)
 router.post('/response', middleware(ResponseView))
 router.get('/error', middleware(ErrorView))
 router.post('/upload', middleware(UploadView))
-router.all('/prisma_try', middleware(PrismaTryView))
+router.get('/prisma_try', middleware(PrismaTryView))
 
 app.use(router.routes())
 app.use(router.allowedMethods())
