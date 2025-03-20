@@ -2,21 +2,33 @@
   "scripts": {
     "dev": "pnpm run -C docs dev",
     "server:dev": "pnpm run -C server dev",
-    "lint:fix": "oxlint . --fix",
-    "lint": "eslint --fix docs/**/*.{ts,tsx,vue}",
-    "build": "gulp -f scripts/build/index.ts",
-    "stub": "pnpm run -r --parallel stub",
-    "postinstall": "pnpm stub",
+
     "docs:build": "pnpm run -C docs build",
-    "publish": "gulp -f scripts/publish.ts",
-    "docker:publish": "gulp -f scripts/docker/publish.ts",
     "cc": "gulp -f scripts/create/component/index.ts",
     "ccd": "gulp -f scripts/create/component-docs/index.ts",
+
+    "build": "gulp -f scripts/build/index.ts",
+    "publish": "gulp -f scripts/publish.ts",
+    "docker:publish": "gulp -f scripts/docker/publish.ts",
+
+    "prisma:generate": "prisma generate",
+    "prisma:studio": "prisma studio",
+    "prisma:pull": "prisma db pull",
+
     "run:task": "gulp -f scripts/task.ts",
-    "rm:nm": "find . -name \"node_modules\" -type d -prune -exec rm -rf '{}' +"
+    "rm:nm": "find . -name \"node_modules\" -type d -prune -exec rm -rf '{}' +",
+
+    "lint:fix": "oxlint . --fix",
+    "lint": "eslint --fix docs/**/*.{ts,tsx,vue}",
+
+    "stub": "pnpm run -r --parallel stub",
+    "postinstall": "pnpm stub"
+
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.1",
+    "@prisma/client": "6.5.0",
+    "@prisma/extension-accelerate": "1.2.2",
     "@skzz/platform": "0.0.0-alpha.73",
     "@vueuse/core": "^11.3.0",
     "@vunk-server/api": "workspace:*",
@@ -55,6 +67,7 @@
     "oxlint": "^0.13.0",
     "pinia": "^2.2.6",
     "pinia-plugin-persist": "^1.0.0",
+    "prisma": "6.5.0",
     "rollup": "^4.27.3",
     "sass": "^1.81.0",
     "sucrase": "^3.35.0",

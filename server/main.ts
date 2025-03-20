@@ -5,6 +5,7 @@ import consola from 'consola'
 import Koa from 'koa'
 import koaBodyParsers from 'koa-body-parsers'
 import ErrorView from './src/views/error'
+import PrismaTryView from './src/views/prisma_try'
 import ResponseView from './src/views/response'
 import UploadView from './src/views/upload'
 
@@ -25,6 +26,7 @@ app.use(CatchErrorMiddleware)
 router.post('/response', middleware(ResponseView))
 router.get('/error', middleware(ErrorView))
 router.post('/upload', middleware(UploadView))
+router.all('/prisma_try', middleware(PrismaTryView))
 
 app.use(router.routes())
 app.use(router.allowedMethods())

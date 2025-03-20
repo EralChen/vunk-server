@@ -11,6 +11,12 @@ importers:
       '@element-plus/icons-vue':
         specifier: ^2.3.1
         version: 2.3.1(vue@3.5.13(typescript@5.6.3))
+      '@prisma/client':
+        specifier: 6.5.0
+        version: 6.5.0(prisma@6.5.0(typescript@5.6.3))(typescript@5.6.3)
+      '@prisma/extension-accelerate':
+        specifier: 1.2.2
+        version: 1.2.2(@prisma/client@6.5.0(prisma@6.5.0(typescript@5.6.3))(typescript@5.6.3))
       '@skzz/platform':
         specifier: 0.0.0-alpha.73
         version: 0.0.0-alpha.73
@@ -269,12 +275,6 @@ importers:
       '@koa/router':
         specifier: ^13.1.0
         version: 13.1.0
-      '@prisma/client':
-        specifier: 6.5.0
-        version: 6.5.0(prisma@6.5.0(typescript@5.6.3))(typescript@5.6.3)
-      '@prisma/extension-accelerate':
-        specifier: 1.2.2
-        version: 1.2.2(@prisma/client@6.5.0(prisma@6.5.0(typescript@5.6.3))(typescript@5.6.3))
       '@vunk-server/components':
         specifier: workspace:*
         version: link:../packages/components
