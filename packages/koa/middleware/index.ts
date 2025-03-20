@@ -14,7 +14,7 @@ export function middleware<
     const root = createElement('root')
 
     const query = ctx.query
-    const json = await ctx.request.body()
+    const json = await ctx.request.body?.()
     const nextDef = new Deferred()
 
     const successApp = createApp({
