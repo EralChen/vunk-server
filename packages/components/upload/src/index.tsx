@@ -1,9 +1,11 @@
+import { Buffer } from 'node:buffer'
 import fs from 'node:fs'
 import path from 'node:path'
 import { useDeferred } from '@vunk/core/composables'
 import { useKoa } from '@vunk-server/koa'
 import busboy from 'busboy'
 import consola from 'consola'
+import iconv from 'iconv-lite'
 import { defineComponent } from 'vue'
 import { emits, props } from './ctx'
 
@@ -22,7 +24,13 @@ export default defineComponent({
     const fileFieldIndexMap = new Map<string, number>()
 
     bb.on('file', (name, file, info) => {
-      const { filename, encoding, mimeType } = info
+      let { filename, encoding, mimeType } = info
+
+      filename = iconv.decode(
+        Buffer.from(filename, 'binary'),
+        'utf8',
+      )
+
       const index = fileFieldIndexMap.get(name) ?? 0
       emit('setData', {
         k: [name, index],

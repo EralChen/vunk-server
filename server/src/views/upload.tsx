@@ -7,7 +7,7 @@ import { VkUpload } from '@vunk-server/components/upload'
 import { defineComponent, reactive } from '@vunk-server/jsx-runtime'
 import { serverRoot } from '../../path.config'
 
-const distPath = path.resolve(serverRoot, './uploads')
+const distPath = path.resolve(serverRoot, './dist/uploads')
 
 export default defineComponent({
   async setup () {
