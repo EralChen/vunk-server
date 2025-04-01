@@ -13,7 +13,7 @@ export default defineComponent({
   name: 'VkUpload',
   emits,
   props,
-  async setup (props, { emit }) {
+  async setup (props, { emit, slots }) {
     const { context: { req } } = useKoa()
     const readyDef = useDeferred()
 
@@ -48,6 +48,10 @@ export default defineComponent({
           fs.mkdirSync(props.path)
         }
         const saveTo = path.join(props.path, filename)
+        emit('setData', {
+          k: [name, index, 'path'],
+          v: saveTo,
+        })
         file.pipe(fs.createWriteStream(saveTo))
       }
 
@@ -56,6 +60,10 @@ export default defineComponent({
           emit('setData', {
             k: [name, index, 'data'],
             v: data,
+          })
+          emit('setData', {
+            k: [name, index, 'size'],
+            v: data.length,
           })
         })
         .on('close', () => {
@@ -77,6 +85,8 @@ export default defineComponent({
 
     await readyDef.promise
 
-    return () => null
+    return () => slots.default?.({
+      data: props.data,
+    })
   },
 })

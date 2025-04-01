@@ -7,18 +7,20 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Post {
-  id        Int     @id @default(autoincrement())
-  title     String
-  content   String?
-  published Boolean @default(false)
-  authorId  Int?
-  User      User?   @relation(fields: [authorId], references: [id])
-}
 
 model User {
   id    Int     @id @default(autoincrement())
   email String  @unique
   name  String?
-  Post  Post[]
+}
+
+model File {
+  id        String   @id @default(cuid()) 
+  filename  String
+  encoding  String 
+  mimeType  String
+  size      Int
+  path      String
+  createdAt DateTime @default(now())
+  createdBy String?
 }

@@ -14,6 +14,9 @@
     "prisma:generate": "prisma generate",
     "prisma:studio": "prisma studio",
     "prisma:pull": "prisma db pull",
+    "prisma:reset": "prisma migrate reset",
+    "prisma:dev": "prisma migrate dev --name init",
+    "prisma:ppg": "npx @prisma/ppg-tunnel --port 5432",
 
     "run:task": "gulp -f scripts/task.ts",
     "rm:nm": "find . -name \"node_modules\" -type d -prune -exec rm -rf '{}' +",
