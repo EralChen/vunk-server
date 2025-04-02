@@ -2,7 +2,7 @@ import { defineConfig } from 'rollup'
 import esbuild from 'rollup-plugin-esbuild'
 
 export default defineConfig({
-  input: 'src/main.ts',
+  input: 'main.ts',
   output: {
     dir: 'dist',
     format: 'cjs',
