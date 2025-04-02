@@ -2,7 +2,7 @@ import type { __VkUpload } from '@vunk-server/components/upload'
 import path from 'node:path'
 import { usePrisma } from '@/composables/usePrisma'
 import { setData } from '@vunk/core/shared'
-import VkResolve from '@vunk-server/components/resolve'
+import { VkResolve } from '@vunk-server/components/resolve'
 import { VkResponse } from '@vunk-server/components/response'
 import { VkUpload } from '@vunk-server/components/upload'
 import { defineComponent } from '@vunk-server/jsx-runtime'
@@ -17,8 +17,8 @@ export default defineComponent({
       file: [] as __VkUpload.FileInfo[],
     }
 
-    const handleFiles = async () => {
-      const filesTask = fileData.file.map(item => prisma.file.upsert({
+    const upsertFiles = async () => {
+      const fileTasks = fileData.file.map(item => prisma.file.upsert({
         where: {
           hash: item.hash,
         },
@@ -31,7 +31,7 @@ export default defineComponent({
           createdBy: 'admin',
         },
       }))
-      return prisma.$transaction(filesTask)
+      return prisma.$transaction(fileTasks)
     }
 
     return () => (
@@ -41,7 +41,7 @@ export default defineComponent({
         onSetData={e => setData(fileData, e)}
       >
         <VkResponse>
-          <VkResolve executor={handleFiles}></VkResolve>
+          <VkResolve executor={upsertFiles}></VkResolve>
         </VkResponse>
       </VkUpload>
     )
