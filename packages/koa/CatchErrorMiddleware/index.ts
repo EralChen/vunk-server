@@ -11,6 +11,8 @@ export const CatchErrorMiddleware: Middleware = async (ctx, next) => {
       && ctx.body.data.component === VkError.name
     ) {
       // Do something your error handling here
+      console.error(err)
+      console.error(err.stack)
       return
     }
 

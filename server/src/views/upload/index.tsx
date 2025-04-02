@@ -2,7 +2,6 @@ import type { __VkUpload } from '@vunk-server/components/upload'
 import path from 'node:path'
 import { usePrisma } from '@/composables/usePrisma'
 import { setData } from '@vunk/core/shared'
-import { pickObject } from '@vunk/shared/object'
 import VkResolve from '@vunk-server/components/resolve'
 import { VkResponse } from '@vunk-server/components/response'
 import { VkUpload } from '@vunk-server/components/upload'
@@ -19,17 +18,20 @@ export default defineComponent({
     }
 
     const handleFiles = async () => {
-      const files = await prisma.file.createManyAndReturn({
-        data: fileData.file.map((item) => {
-          return {
-            ...pickObject(item, {
-              excludes: ['data'],
-            }),
-            createdBy: 'admin',
-          }
-        }),
-      })
-      return files
+      const filesTask = fileData.file.map(item => prisma.file.upsert({
+        where: {
+          hash: item.hash,
+        },
+        create: {
+          ...item,
+          createdBy: 'admin',
+        },
+        update: {
+          ...item,
+          createdBy: 'admin',
+        },
+      }))
+      return prisma.$transaction(filesTask)
     }
 
     return () => (

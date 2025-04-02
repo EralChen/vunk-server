@@ -50,7 +50,18 @@ export default defineComponent({
         if (!fs.existsSync(props.path)) {
           fs.mkdirSync(props.path)
         }
-        const saveTo = path.join(props.path, filename)
+        let saveTo = path.join(props.path, filename)
+
+        // Check if file already exists, if so, rename it
+        let savaToIndex = 1
+        while (fs.existsSync(saveTo)) {
+          const ext = path.extname(filename)
+          const nameWithoutExt = path.basename(filename, ext)
+          const newFilename = `${nameWithoutExt}(${savaToIndex})${ext}`
+          saveTo = path.join(props.path, newFilename)
+          savaToIndex++
+        }
+
         emit('setData', {
           k: [name, index, 'path'],
           v: saveTo,
@@ -94,12 +105,27 @@ export default defineComponent({
           v: size,
         })
 
-        const hash = await calculateFileHashSample(file as never)
+        const hash = await calculateFileHashSample(item.path)
 
         emit('setData', {
           k: [key, index, 'hash'],
           v: hash,
         })
+        const hashPath = path.join(props.path, hash)
+
+        // 如果文件已经存在，删除旧文件
+        if (fs.existsSync(hashPath)) {
+          fs.rmSync(hashPath)
+        }
+
+        // 将文件重命名为 hash
+        fs.renameSync(item.path, hashPath)
+        emit('setData', {
+          k: [key, index, 'path'],
+          v: hashPath,
+        })
+
+        consola.log(`File [${key}]: hash: %j`, hash)
       }
     }
 

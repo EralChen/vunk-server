@@ -7,6 +7,7 @@ import { ElFormItem, ElUpload } from 'element-plus'
     <ElUpload
       action="http://localhost:4545/upload"
       multiple
+      class="w-full"
     >
       <el-button type="primary">
         Click to upload
