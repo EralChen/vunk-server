@@ -7,6 +7,7 @@
     "useDefineForClassFields": false,
     "experimentalDecorators": true,
     "baseUrl": ".",
+    "rootDir": "../",
     "module": "ESNext",
     "moduleResolution": "node",
     "paths": {
@@ -31,6 +32,7 @@
     "src/**/*.tsx",
     "src/**/*.d.ts",
     "types/**/*.d.ts",
+    "../typings/**/*.d.ts",
     "../packages/components/**/*.ts",
     "../packages/components/**/*.tsx"
   ],
