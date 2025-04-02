@@ -1,5 +1,6 @@
 // For this project development
 /// <reference types="element-plus/global" />
+/// <reference types="@vitest/browser/providers/playwright" />
 
 import '@vue/runtime-core'
 import 'vite/client'

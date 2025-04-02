@@ -1,14 +1,5 @@
 <script lang="ts" setup>
 import { ElFormItem, ElUpload } from 'element-plus'
-import { onMounted } from 'vue'
-import { testUpload } from './api'
-
-onMounted(() => {
-  testUpload()
-    .then((res) => {
-      console.log('Upload test response:', res)
-    })
-})
 </script>
 
 <template>

@@ -1,13 +1,16 @@
+import type { FileInfo } from './types'
 import { Buffer } from 'node:buffer'
 import fs from 'node:fs'
 import path from 'node:path'
 import { useDeferred } from '@vunk/core/composables'
+import { noop } from '@vunk/shared/function'
 import { useKoa } from '@vunk-server/koa'
 import busboy from 'busboy'
 import consola from 'consola'
 import iconv from 'iconv-lite'
 import { defineComponent } from 'vue'
 import { emits, props } from './ctx'
+import { calculateFileHashSample } from './utils'
 
 export default defineComponent({
   name: 'VkUpload',
@@ -54,18 +57,8 @@ export default defineComponent({
         })
         file.pipe(fs.createWriteStream(saveTo))
       }
-
       file
-        .on('data', (data) => {
-          emit('setData', {
-            k: [name, index, 'data'],
-            v: data,
-          })
-          emit('setData', {
-            k: [name, index, 'size'],
-            v: data.length,
-          })
-        })
+        .on('data', noop)
         .on('close', () => {
           consola.log(`File [${name}] done`)
         })
@@ -81,9 +74,34 @@ export default defineComponent({
     })
 
     bb.on('close', readyDef.resolve)
+
     req.pipe(bb)
 
     await readyDef.promise
+
+    for (const key in props.data) {
+      let list: FileInfo[] = props.data[key]
+      if (!Array.isArray(list)) {
+        continue
+      }
+      list = list.filter(item => item.path)
+
+      for (const [index, item] of list.entries()) {
+        const file = fs.statSync(item.path)
+        const { size } = file
+        emit('setData', {
+          k: [key, index, 'size'],
+          v: size,
+        })
+
+        const hash = await calculateFileHashSample(file as never)
+
+        emit('setData', {
+          k: [key, index, 'hash'],
+          v: hash,
+        })
+      }
+    }
 
     return () => slots.default?.({
       data: props.data,
