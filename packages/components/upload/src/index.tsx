@@ -113,17 +113,16 @@ export default defineComponent({
         })
         const hashPath = path.join(props.path, hash)
 
-        // 如果文件已经存在，删除旧文件
-        if (fs.existsSync(hashPath)) {
-          fs.rmSync(hashPath)
+        if (fs.existsSync(hashPath)) { // 如果文件已经存在，舍弃当前文件
+          fs.rmSync(item.path)
         }
-
-        // 将文件重命名为 hash
-        fs.renameSync(item.path, hashPath)
-        emit('setData', {
-          k: [key, index, 'path'],
-          v: hashPath,
-        })
+        else { // 将文件重命名为 hash
+          fs.renameSync(item.path, hashPath)
+          emit('setData', {
+            k: [key, index, 'path'],
+            v: hashPath,
+          })
+        }
 
         consola.log(`File [${key}]: hash: %j`, hash)
       }
