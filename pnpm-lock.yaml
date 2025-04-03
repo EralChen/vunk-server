@@ -51,8 +51,8 @@ importers:
         specifier: workspace:*
         version: link:packages/entry
       '@vunk/shared':
-        specifier: 0.6.2
-        version: 0.6.2
+        specifier: npm:@vunk/shared@latest
+        version: 0.6.3
       '@vunk/skzz':
         specifier: 0.0.0-alpha.111
         version: 0.0.0-alpha.111
@@ -2735,8 +2735,8 @@ packages:
   '@vunk/plus@1.1.4':
     resolution: {integrity: sha512-TRff70op993l1+E0cVXbe92vs7pmcgqGXFk5Pb6GheSrCLrupvTqmOLcp133SsUhjW3z4Fm3yAX3loOr6LCwLA==}
 
-  '@vunk/shared@0.6.2':
-    resolution: {integrity: sha512-OS4unUUCMFcoSCMMkIKTc6efENWkeapbvuawL/06qCld7XYP1owCo/ct3fK5XK9lBsu7M/lFfd/ZQ1Vd2z4mJA==}
+  '@vunk/shared@0.6.3':
+    resolution: {integrity: sha512-bAaS6imzsKZRXThTuqDDmwbUzRTh6Ul2QNk4fqFPl55RzoJ02TjYC1n7RkJrif3QhTUq8lzZa5NCWo1yVrXUlg==}
 
   '@vunk/skzz@0.0.0-alpha.111':
     resolution: {integrity: sha512-Vk/47vffp+RsFXIN0qjdZ943YibHqMuv9SHzsSXGQImXY8p3EO4nJgdXvEyig4FaKZZhIGxNXsYAO9VC8wl3YA==}
@@ -10332,7 +10332,7 @@ snapshots:
 
   '@vunk/plus@1.1.4': {}
 
-  '@vunk/shared@0.6.2': {}
+  '@vunk/shared@0.6.3': {}
 
   '@vunk/skzz@0.0.0-alpha.111': {}
 

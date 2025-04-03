@@ -1,4 +1,8 @@
 export const props = {
+  pagination: {
+    type: Object,
+    default: () => ({}),
+  },
   pageSize: {
     type: [Number, String],
     required: false,
@@ -14,4 +18,5 @@ export const props = {
 }
 
 export const emits = {
+  'update:pagination': null,
 }

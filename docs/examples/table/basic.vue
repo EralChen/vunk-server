@@ -8,8 +8,8 @@ restFetch.request({
   method: 'GET',
   url: '/table',
   params: {
-    start: 2,
-    pageSize: 10,
+    currentPage: 2,
+    pageSize: 2,
   },
 }).then((res) => {
   data.value = res

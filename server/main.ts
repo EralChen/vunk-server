@@ -1,6 +1,5 @@
 import fs from 'node:fs'
 import KoaRouter from '@koa/router'
-import { VkTable } from '@vunk-server/components/table'
 import { CatchErrorMiddleware, middleware } from '@vunk-server/koa'
 import consola from 'consola'
 import Koa from 'koa'
@@ -9,6 +8,7 @@ import ErrorView from './src/views/error'
 import FileView from './src/views/file'
 import PrismaTryView from './src/views/prisma_try'
 import ResponseView from './src/views/response'
+import TableView from './src/views/table'
 import UploadView from './src/views/upload'
 
 const app = new Koa()
@@ -28,7 +28,7 @@ app.use(CatchErrorMiddleware)
 router.post('/response', middleware(ResponseView))
 router.get('/error', middleware(ErrorView))
 
-router.get('/table', middleware(VkTable))
+router.get('/table', middleware(TableView))
 
 router.post('/upload', middleware(UploadView))
 router.get('/file', middleware(FileView))
