@@ -14,7 +14,8 @@ export function middleware<
     const root = createElement('root')
 
     const query = ctx.query
-    const json = await ctx.request.body?.()
+    const params = ctx.params
+    const body = await ctx.request.body?.()
     const nextDef = new Deferred()
 
     const successApp = createApp({
@@ -29,8 +30,9 @@ export function middleware<
           h(
             Component,
             {
-              ...json,
+              ...body,
               ...query,
+              ...params,
             },
             slots,
           ),

@@ -1,8 +1,60 @@
+import type { __VkTable } from '@vunk-server/components/table'
+import type { Ref } from '@vunk-server/jsx-runtime'
 import { usePrisma } from '@/composables/usePrisma'
-import { defineComponent } from '@vunk-server/jsx-runtime'
+import VkResponse from '@vunk-server/components/response'
+import { VkTable } from '@vunk-server/components/table'
+import { defineComponent, ref } from '@vunk-server/jsx-runtime'
+import { restFetch } from '@vunk-server/shared'
 
 export default defineComponent({
-  setup () {
-    return () => {}
+  props: {
+    pageSize: null,
+    currentPage: null,
+  },
+  async setup (props) {
+    const prisma = usePrisma()
+    const pagination = ref() as Ref<__VkTable.Pagination>
+
+    const renderRows = async () => {
+      const rows = await prisma.file.findMany({
+        skip: pagination.value.start,
+        take: pagination.value.pageSize,
+        orderBy: {
+          id: 'desc',
+        },
+        omit: {
+          path: true,
+        },
+      })
+
+      return rows.map((item) => {
+        return {
+          ...item,
+          url: `${restFetch.baseURL}/download/${item.id}`,
+        }
+      })
+    }
+
+    const renderTotal = async () => {
+      const total = await prisma.file.count({
+        where: {
+
+        },
+      })
+      return total
+    }
+
+    return () => (
+      <VkResponse>
+        <VkTable
+          pageSize={props.pageSize}
+          currentPage={props.currentPage}
+          onUpdate:pagination={v => pagination.value = v}
+          rowsExecutor={renderRows}
+          totalExecutor={renderTotal}
+        >
+        </VkTable>
+      </VkResponse>
+    )
   },
 })

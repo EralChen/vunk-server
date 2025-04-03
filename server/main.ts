@@ -1,15 +1,23 @@
 import fs from 'node:fs'
 import KoaRouter from '@koa/router'
 import { CatchErrorMiddleware, middleware } from '@vunk-server/koa'
+import { restFetch } from '@vunk-server/shared'
 import consola from 'consola'
 import Koa from 'koa'
 import koaBodyParsers from 'koa-body-parsers'
+import DownloadView from './src/views/download'
 import ErrorView from './src/views/error'
 import FileView from './src/views/file'
 import PrismaTryView from './src/views/prisma_try'
 import ResponseView from './src/views/response'
 import TableView from './src/views/table'
 import UploadView from './src/views/upload'
+import { loadEnvMeta } from './utils/loadEnv'
+
+const { env } = loadEnvMeta()
+
+restFetch.baseURL = env.VITE_BASE_API
+consola.info('VITE_BASE_API', env.VITE_BASE_API)
 
 const app = new Koa()
 const router = new KoaRouter()
@@ -31,6 +39,8 @@ router.get('/error', middleware(ErrorView))
 router.get('/table', middleware(TableView))
 
 router.post('/upload', middleware(UploadView))
+router.get('/download/:id', middleware(DownloadView))
+
 router.get('/file', middleware(FileView))
 router.get('/prisma_try', middleware(PrismaTryView))
 

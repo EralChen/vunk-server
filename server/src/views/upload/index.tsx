@@ -6,6 +6,7 @@ import { VkResolve } from '@vunk-server/components/resolve'
 import { VkResponse } from '@vunk-server/components/response'
 import { VkUpload } from '@vunk-server/components/upload'
 import { defineComponent } from '@vunk-server/jsx-runtime'
+import { restFetch } from '@vunk-server/shared'
 import { serverRoot } from '../../../path.config'
 
 const distPath = path.resolve(serverRoot, './dist/uploads')
@@ -31,7 +32,12 @@ export default defineComponent({
           createdBy: 'admin',
         },
       }))
-      return prisma.$transaction(fileTasks)
+      return prisma.$transaction(fileTasks).then(res => res.map((item) => {
+        return {
+          ...item,
+          url: `${restFetch.baseURL}/download/${item.id}`,
+        }
+      }))
     }
 
     return () => (
