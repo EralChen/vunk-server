@@ -118,11 +118,12 @@ export default defineComponent({
         }
         else { // 将文件重命名为 hash
           fs.renameSync(item.path, hashPath)
-          emit('setData', {
-            k: [key, index, 'path'],
-            v: hashPath,
-          })
         }
+
+        emit('setData', {
+          k: [key, index, 'path'],
+          v: hashPath,
+        })
 
         consola.log(`File [${key}]: hash: %j`, hash)
       }
