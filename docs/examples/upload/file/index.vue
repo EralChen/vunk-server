@@ -54,9 +54,12 @@ function read () {
 </script>
 
 <template>
-  <ElButton @click="read">
-    刷新
-  </ElButton>
+  <p>
+    <ElButton @click="read">
+      刷新
+    </ElButton>
+  </p>
+
   <VkTablesV1
     v-model:current-page="pagination.currentPage"
     v-model:page-size="pagination.pageSize"
