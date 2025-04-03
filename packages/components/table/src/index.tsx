@@ -1,12 +1,12 @@
 import { getPartialNumber } from '@vunk/shared/number'
-import { computed, defineComponent, watch } from 'vue'
+import { computed, defineComponent } from 'vue'
 import { emits, props } from './ctx'
 
 export default defineComponent({
   name: 'VkTable',
   props,
   emits,
-  async setup (props, { slots, emit }) {
+  async setup (props, { emit }) {
     const pagination = computed(() => {
       const pageSize = getPartialNumber(props.pageSize)
       let start = getPartialNumber(props.start)
@@ -27,21 +27,27 @@ export default defineComponent({
         currentPage,
       }
     })
-    watch(pagination, () => {
-      emit('update:pagination', pagination.value)
-    }, { immediate: true })
+
+    emit('update:pagination', pagination.value)
+
+    const rows = await props.rowsExecutor?.({ pagination: pagination.value })
+
+    let total = rows?.length
+    pagination.value.pageSize && (
+      total = await props.totalExecutor?.({ pagination: pagination.value, rows })
+    )
+
+    emit('load', {
+      pagination: pagination.value,
+      rows: rows ?? [],
+      total: total ?? -1,
+    })
 
     return () => (
       <>
         <pagination v-raw={pagination.value}></pagination>
-        <rows>
-          {
-            slots.default?.({
-              pagination: pagination.value,
-            })
-          }
-        </rows>
-
+        <rows v-raw={rows}></rows>
+        <total v-raw={total}></total>
       </>
     )
   },

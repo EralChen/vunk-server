@@ -8,7 +8,7 @@ restFetch.request({
   method: 'GET',
   url: '/table',
   params: {
-    currentPage: 2,
+    currentPage: 1,
     pageSize: 2,
   },
 }).then((res) => {

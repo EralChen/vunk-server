@@ -15,13 +15,9 @@ export default defineComponent({
 
     emit('resolve', value)
 
-    if (value === undefined) {
-      return slots.default
-    }
-
     return () => (
       <>
-        <vk:element value={value} />
+        { value !== undefined && <vk:element value={value} /> }
         { slots.default?.() }
       </>
     )

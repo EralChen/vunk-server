@@ -1,4 +1,4 @@
---- 
+---
 title: Table
 lang: zh-CN
 ---
@@ -7,11 +7,19 @@ lang: zh-CN
 
 Table
 
-
 ## Basic
 
-:::demo 
+:::demo
 table/basic
 :::
 
-## Table 其他
+## Table Props
+
+:::props
+table/src/ctx
+:::
+
+:::details Types
+:::source
+components/table/src/types
+:::
