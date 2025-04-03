@@ -36,7 +36,7 @@
     "@vunk/form": "^1.4.4",
     "@vunk/plus": "^1.1.4",
     "@vunk/server": "workspace:*",
-    "@vunk/shared": "0.5.55",
+    "@vunk/shared": "0.6.2",
     "@vunk/skzz": "0.0.0-alpha.111",
     "element-plus": "^2.9.6",
     "koa": "^2.16.0",

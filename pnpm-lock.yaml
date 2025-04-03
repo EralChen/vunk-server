@@ -51,8 +51,8 @@ importers:
         specifier: workspace:*
         version: link:packages/entry
       '@vunk/shared':
-        specifier: 0.5.55
-        version: 0.5.55
+        specifier: 0.6.2
+        version: 0.6.2
       '@vunk/skzz':
         specifier: 0.0.0-alpha.111
         version: 0.0.0-alpha.111
@@ -2735,8 +2735,8 @@ packages:
   '@vunk/plus@1.1.4':
     resolution: {integrity: sha512-TRff70op993l1+E0cVXbe92vs7pmcgqGXFk5Pb6GheSrCLrupvTqmOLcp133SsUhjW3z4Fm3yAX3loOr6LCwLA==}
 
-  '@vunk/shared@0.5.55':
-    resolution: {integrity: sha512-KtAwWIcf00KWOqzeSzdgWc7xhL8aIO4uY+DMfk4kRrVCIpb1p/XghDp6/eoUhtKwxmDbdZxV0B3RKtnUil5njQ==}
+  '@vunk/shared@0.6.2':
+    resolution: {integrity: sha512-OS4unUUCMFcoSCMMkIKTc6efENWkeapbvuawL/06qCld7XYP1owCo/ct3fK5XK9lBsu7M/lFfd/ZQ1Vd2z4mJA==}
 
   '@vunk/skzz@0.0.0-alpha.111':
     resolution: {integrity: sha512-Vk/47vffp+RsFXIN0qjdZ943YibHqMuv9SHzsSXGQImXY8p3EO4nJgdXvEyig4FaKZZhIGxNXsYAO9VC8wl3YA==}
@@ -3319,7 +3319,7 @@ packages:
     engines: {node: ^10 || ^12.20.0 || ^14.13.0 || >=15.0.0}
 
   css-value@0.0.1:
-    resolution: {integrity: sha1-Xv1sLupeof1rasV+wEJ7GEUkJOo=}
+    resolution: {integrity: sha512-FUV3xaJ63buRLgHrLQVlVgQnQdR4yqdLGaDu7g8CQcWjInDfM9plBTPI9FRfpahju1UBSaMckeb2/46ApS/V1Q==}
 
   css-what@6.1.0:
     resolution: {integrity: sha512-HTUrgRJ7r4dsZKU6GjmpfRK1O76h97Z8MfS1G0FozR+oF2kG6Vfe8JE6zwrkbxigziPHinCJ+gCPjA9EaBDtRw==}
@@ -10332,7 +10332,7 @@ snapshots:
 
   '@vunk/plus@1.1.4': {}
 
-  '@vunk/shared@0.5.55': {}
+  '@vunk/shared@0.6.2': {}
 
   '@vunk/skzz@0.0.0-alpha.111': {}
 
@@ -14923,7 +14923,7 @@ snapshots:
     dependencies:
       b4a: 1.6.7
       fast-fifo: 1.3.2
-      streamx: 2.20.2
+      streamx: 2.22.0
     optional: true
 
   tar@6.2.1:

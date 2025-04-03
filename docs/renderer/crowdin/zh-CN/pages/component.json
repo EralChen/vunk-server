@@ -9,6 +9,10 @@
       {
         "link": "/error",
         "text": "Error"
+      },
+      {
+        "link": "/table",
+        "text": "Table"
       }
     ]
   },

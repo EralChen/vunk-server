@@ -13,4 +13,10 @@ Upload
 upload/basic
 :::
 
+## File
+
+:::demo
+upload/file/index
+:::
+
 ## Upload 其他
