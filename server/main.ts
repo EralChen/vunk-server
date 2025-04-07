@@ -26,7 +26,7 @@ koaBodyParsers(app)
 
 app.use(async (ctx, next) => {
   ctx.set('Access-Control-Allow-Origin', '*')
-  ctx.set('Access-Control-Allow-Headers', 'Content-Type')
+  ctx.set('Access-Control-Allow-Headers', ['Content-Type', 'x-requested-with'])
 
   await next()
 })

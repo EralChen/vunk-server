@@ -4,6 +4,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { useDeferred } from '@vunk/core/composables'
 import { noop } from '@vunk/shared/function'
+import { Deferred } from '@vunk/shared/promise'
 import { useKoa } from '@vunk-server/koa'
 import busboy from 'busboy'
 import consola from 'consola'
@@ -25,6 +26,10 @@ export default defineComponent({
     })
 
     const fileFieldIndexMap = new Map<string, number>()
+    const fileWriteTaskMap = new Map<
+      string/* saveTo */,
+      Promise<void>
+    >()
 
     bb.on('file', (name, file, info) => {
       let { filename, encoding, mimeType } = info
@@ -48,7 +53,7 @@ export default defineComponent({
 
       if (props.path) { // Save file to disk
         if (!fs.existsSync(props.path)) {
-          fs.mkdirSync(props.path)
+          fs.mkdirSync(props.path, { recursive: true })
         }
         let saveTo = path.join(props.path, filename)
 
@@ -66,7 +71,23 @@ export default defineComponent({
           k: [name, index, 'path'],
           v: saveTo,
         })
-        file.pipe(fs.createWriteStream(saveTo))
+        const fileTask = new Deferred<void>()
+
+        const writeStream = fs.createWriteStream(saveTo)
+
+        writeStream.on('error', (err) => {
+          consola.error(`File [${name}] error: %j`, err)
+          fileTask.reject(err)
+        })
+
+        writeStream.on('finish', () => {
+          consola.log(`File [${name}] saved to %j`, saveTo)
+          fileTask.resolve()
+        })
+
+        file.pipe(writeStream)
+
+        fileWriteTaskMap.set(saveTo, fileTask.promise)
       }
       file
         .on('data', noop)
@@ -98,6 +119,8 @@ export default defineComponent({
       list = list.filter(item => item.path)
 
       for (const [index, item] of list.entries()) {
+        await fileWriteTaskMap.get(item.path)
+
         const file = fs.statSync(item.path)
         const { size } = file
         emit('setData', {
