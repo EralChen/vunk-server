@@ -41,15 +41,15 @@ it('should handle array transformation naturally', () => {
   })
 })
 
-it('should vk:element work', () => {
+it('should vk:raw work', () => {
   const root = nodeOps.createElement('root')
 
   const app = createApp({
     setup () {
       return () => (
-        <vk:element value={[]}>
-          <vk:element value={1} />
-        </vk:element>
+        <vk:raw value={[]}>
+          <vk:raw value={1} />
+        </vk:raw>
       )
     },
   })

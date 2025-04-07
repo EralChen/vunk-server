@@ -200,7 +200,7 @@ defineComponent({
 
 
 
-### vk:element
+### vk:raw
 
 特殊标签，用于直接控制响应数据的结构和值。通过 `value` 属性设置数据。
 
@@ -208,19 +208,19 @@ defineComponent({
 
 1. 创建数组：
 ```tsx
-<vk:element value={[]}>
-  <vk:element value={1} />
-  <vk:element value={2} />
-</vk:element>
+<vk:raw value={[]}>
+  <vk:raw value={1} />
+  <vk:raw value={2} />
+</vk:raw>
 // 输出: [1, 2]
 ```
 
 2. 对象处理：
 ```tsx
-<vk:element value={{}}>
-  <vk:element value={{ name: 'Tom' }} />
-  <vk:element value={{ age: 18 }} />
-</vk:element>
+<vk:raw value={{}}>
+  <vk:raw value={{ name: 'Tom' }} />
+  <vk:raw value={{ age: 18 }} />
+</vk:raw>
 // 输出: { "name": "Tom", "age": 18 }
 ```
 

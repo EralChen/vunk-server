@@ -17,7 +17,7 @@ export default defineComponent({
 
     return () => (
       <>
-        { value !== undefined && <vk:element value={value} /> }
+        { value !== undefined && <vk:raw value={value} /> }
         { slots.default?.() }
       </>
     )

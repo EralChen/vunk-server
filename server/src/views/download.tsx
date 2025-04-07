@@ -37,10 +37,10 @@ export default defineComponent({
     const fileStream = fs.createReadStream(filePath)
 
     return () => (
-      <vk:element
+      <vk:raw
         value={fileStream}
       >
-      </vk:element>
+      </vk:raw>
     )
   },
 })

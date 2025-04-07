@@ -1,6 +1,6 @@
 export enum JSONNodeTypes {
   TEXT = 'TEXT',
-  ELEMENT = 'ELEMENT',
+  RAW = 'RAW',
   FIELD = 'FIELD',
   COMMENT = 'COMMENT',
 }

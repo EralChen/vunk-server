@@ -75,8 +75,8 @@ export function insertNodeJson (
     }
   }
 
-  // <parent> <vk:element value="1"></vk:element> </parent>
-  if (node.type === JSONNodeTypes.ELEMENT) {
+  // <parent> <vk:raw value="1"></vk:raw> </parent>
+  if (node.type === JSONNodeTypes.RAW) {
     // 首次插入
     if (parent.value == null) {
       parent.value = node.value
