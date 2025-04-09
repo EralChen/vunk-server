@@ -4,6 +4,11 @@
   "private": true,
   "module": "index.ts",
   "scripts": {
-    "build": "gulp -f gulpfile.ts"
+    "gulp:build": "gulp -f gulpfile.ts",
+    "vite:build": "vite build",
+    "build": "npm run gulp:build && npm run vite:build"
+  },
+  "devDependencies": {
+    "vite-plugin-dts": "^4.5.3"
   }
 }

@@ -1,6 +1,6 @@
 import path from 'node:path'
 import { filePathIgnore } from '@lib-env/build-constants'
-import { genTypes, rollupFiles } from '@lib-env/build-utils'
+import { rollupFiles } from '@lib-env/build-utils'
 import { distDir } from '@lib-env/path'
 import { gulpTask } from '@vunk/shared/function'
 import { sync } from 'fast-glob'
@@ -35,11 +35,5 @@ export default parallel(
         },
       }),
     ])
-  }),
-  gulpTask(`gen ${baseDirname} types`, async () => {
-    await genTypes({
-      filesRoot: path.resolve(__dirname),
-      outDir: baseDirname,
-    })
   }),
 )

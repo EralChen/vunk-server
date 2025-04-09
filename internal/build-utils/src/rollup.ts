@@ -27,6 +27,7 @@ export async function rollupFiles (settings: {
     outputExtname,
 
     outputOptions: {
+      exports: 'named',
       paths: fixPath,
       chunkFileNames: `[name]${outputExtname}`,
       ...settings.outputOptions,

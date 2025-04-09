@@ -1,6 +1,8 @@
 import type { Pagination } from '@vunk/shared'
 import { restFetch } from '@vunk-server/shared'
 
+export * from './types'
+
 export function rFile (query: {
   id?: string
 }, pagination?: Pagination) {

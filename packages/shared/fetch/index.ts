@@ -1,4 +1,4 @@
-import type { Pagination } from '@vunk/shared'
+import type { NormalObject, Pagination } from '@vunk/shared'
 import type { RestFetchRequestOptions } from '@vunk/shared/fetch'
 import { RestFetch } from '@vunk/shared/fetch'
 
@@ -20,6 +20,7 @@ export interface TableData<T> {
 
 type RequestFunction = <T = any>(
   input: RestFetchRequestOptions,
+  state?: NormalObject,
   init?: RequestInit
 ) => Promise<R<T>>
 
