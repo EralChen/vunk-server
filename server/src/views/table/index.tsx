@@ -3,6 +3,7 @@ import type { Ref } from '@vunk-server/jsx-runtime'
 import { usePrisma } from '@/composables/usePrisma'
 import { VkTable } from '@vunk-server/components/table'
 import { defineComponent, ref } from '@vunk-server/jsx-runtime'
+import formItems from './formItems'
 
 export default defineComponent({
   props: {
@@ -41,6 +42,7 @@ export default defineComponent({
         rowsExecutor={renderRows}
         totalExecutor={renderTotal}
       >
+        <formItems v-raw={formItems}></formItems>
       </VkTable>
     )
   },

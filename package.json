@@ -41,6 +41,7 @@
     "element-plus": "^2.9.6",
     "koa": "^2.16.0",
     "koa-body-parsers": "^5.0.0",
+    "superjson": "^2.2.2",
     "vue": "^3.5.13"
   },
   "devDependencies": {
@@ -79,7 +80,7 @@
     "vite": "^6.2.5",
     "vite-plugin-external": "^4.3.1",
     "vite-plugin-vue-devtools": "^7.6.4",
-    "vitest": "^3.0.7",
+    "vitest": "3.1.1",
     "vitest-browser-vue": "^0.2.0"
   }
 }
