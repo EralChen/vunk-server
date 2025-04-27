@@ -15,7 +15,6 @@ model User {
 
 model File {
   id        String   @id @default(cuid())
-  hash      String   @unique
   filename  String
   encoding  String
   mimeType  String
@@ -23,4 +22,5 @@ model File {
   path      String
   createdAt DateTime @default(now())
   createdBy String?
+  hash      String   @unique
 }
