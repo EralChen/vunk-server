@@ -12,6 +12,7 @@ export default eslint({
     '@stylistic/space-before-function-paren': ['error', 'always'],
     'ts/no-empty-object-type': 'off',
     'ts/no-unsafe-function-type': 'off',
+    'antfu/no-top-level-await': 'off',
   },
   ignores: [
     'node_modules',
