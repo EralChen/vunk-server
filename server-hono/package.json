@@ -1,0 +1,12 @@
+{
+  "name": "vunk-server-hono",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "tsx ./src/main.ts --tsconfig ./tsconfig.json"
+  },
+  "dependencies": {
+    "@vunk-server/components": "workspace:*",
+    "@vunk-server/jsx-runtime": "workspace:*",
+    "consola": "^3.4.0"
+  }
+}

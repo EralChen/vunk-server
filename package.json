@@ -1,7 +1,7 @@
 {
   "scripts": {
     "dev": "pnpm run -C docs dev",
-    "server:dev": "pnpm run -C server dev",
+    "server:dev": "pnpm run -C server-hono dev",
     "docs:build": "pnpm run -C docs build",
     "cc": "gulp -f scripts/create/component/index.ts",
     "ccd": "gulp -f scripts/create/component-docs/index.ts",
@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.1",
+    "@hono/node-server": "^1.18.0",
     "@prisma/client": "6.5.0",
     "@prisma/extension-accelerate": "1.2.2",
     "@skzz/platform": "0.0.0-alpha.73",
@@ -39,6 +40,7 @@
     "@vunk/shared": "0.7.0",
     "@vunk/skzz": "0.0.0-alpha.111",
     "element-plus": "^2.9.6",
+    "hono": "^4.8.10",
     "koa": "^2.16.0",
     "koa-body-parsers": "^5.0.0",
     "superjson": "^2.2.2",

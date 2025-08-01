@@ -3,6 +3,6 @@ packages:
   - packages/*
   - docs
   - app
-  - app-ssr
   - slidev
   - server
+  - server-hono
