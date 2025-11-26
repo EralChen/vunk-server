@@ -11,7 +11,7 @@ import esbuild from 'rollup-plugin-esbuild'
 const buildFile = '**/index.ts'
 const baseDirname = __dirname.split(path.sep).pop() as string
 const external = [
-  'koa',
+  'hono',
 ]
 const plugins = [
   nodeResolve(),
